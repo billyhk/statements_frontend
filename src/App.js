@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// components
+import NavBar from './components/NavBar/NavBar';
+import Home from './components/Home/Home';
+import SignIn from './components/Password/SignIn';
+import SignUp from './components/Password/SignUp';
+import User from './components/User/UserDetail';
+
+const App = () => {
+	const [token, setToken] = useState('');
+
+	async function handleSignOut() {
+		await setToken(null);
+	}
+	return (
+		<>
+			<NavBar userToken={token} handleSignOut={handleSignOut} />
+			<main>
+				<Route exact path='/' component={Home} />
+				<Route exact path='/signup' component={SignUp} />
+				<Route
+					exact
+					path='/signin'
+					render={(props) => {
+						return <SignIn setToken={setToken} userToken={token} />;
+					}}
+				/>
+				{/* <Route
+					exact
+					path='/user/:emailId'
+					render={(props) => {
+						return <User userToken={token} />;
+					}}
+				/> */}
+				<Route
+					exact
+					path='/user/:id'
+					render={(routerProps) => {
+						return (
+							<User
+								match={routerProps.match}
+								userToken={token}
+								handleSignOut={handleSignOut}
+							/>
+						);
+					}}
+				/>
+			</main>
+		</>
+	);
+};
 
 export default App;
