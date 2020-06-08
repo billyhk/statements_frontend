@@ -18,8 +18,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 					<Nav className='ml-auto'>
 						<Link to='/'>
 							<i className='fas fa-home'></i>
-							<span className='toggle-hidden-nav' id='toggle-hidden-nav'>
-								Home
+							<span className='toggle-hidden-nav' id='toggle-hidden-nav'>Home
 							</span>
 						</Link>
 						{userToken ? (
@@ -48,7 +47,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 						) : (
 							<Link to='/signin'>
 								<i className='fas fa-lock'></i>
-								<span className='toggle-hidden-nav'> Sign In</span>
+								<span className='toggle-hidden-nav'>   Sign In</span>
 							</Link>
 						)}
 					</Nav>
