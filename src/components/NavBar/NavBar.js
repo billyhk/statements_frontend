@@ -23,7 +23,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 						</Link>
 						{userToken ? (
 							<>
-								<Link to='/user/:id'>
+								<Link to='/user'>
 									<i className='fas fa-user'></i>{' '}
 									<span className='toggle-hidden-nav'>My Account</span>
 								</Link>

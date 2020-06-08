@@ -34,15 +34,20 @@ class SignIn extends Component {
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res.access);
-				this.props.setToken(res.access);
-				this.setState({ ...this.state, redirectToReferrer: true });
-			});
+				if (res.access) {
+					this.props.setToken(res.access);
+					this.setState({ ...this.state, redirectToReferrer: true });
+				} else {
+					alert("User information is incorrect.")
+				}
+			})
+			.catch(console.error);
 	};
 
 	render() {
 		const { redirectToReferrer } = this.state;
 		if (redirectToReferrer) {
-			return <Redirect to='/user/:id' />;
+			return <Redirect to='/user' />;
 		}
 
 		return (

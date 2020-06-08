@@ -6,7 +6,8 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import SignIn from './components/Password/SignIn';
 import SignUp from './components/Password/SignUp';
-import User from './components/User/UserDetail';
+import UserDetail from './components/User/UserDetail';
+import UserUpdate from './components/User/UserUpdate';
 
 const App = () => {
 	const [token, setToken] = useState('');
@@ -27,22 +28,27 @@ const App = () => {
 						return <SignIn setToken={setToken} userToken={token} />;
 					}}
 				/>
-				{/* <Route
-					exact
-					path='/user/:emailId'
-					render={(props) => {
-						return <User userToken={token} />;
-					}}
-				/> */}
 				<Route
 					exact
-					path='/user/:id'
+					path='/user'
 					render={(routerProps) => {
 						return (
-							<User
+							<UserDetail
 								match={routerProps.match}
 								userToken={token}
 								handleSignOut={handleSignOut}
+							/>
+						);
+					}}
+				/>
+				<Route
+					exact
+					path='/user/edit'
+					render={(routerProps) => {
+						return (
+							<UserUpdate
+								match={routerProps.match}
+								userToken={token}
 							/>
 						);
 					}}
