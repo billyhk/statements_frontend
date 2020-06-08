@@ -11,6 +11,7 @@ class SignUp extends Component {
 		this.state = {
 			firstname: '',
 			lastname: '',
+			username: '',
 			email: '',
 			password: '',
 			passwordConfirm: '',
@@ -37,7 +38,7 @@ class SignUp extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const url = `${APIURL}/api/users`;
+		const url = `${APIURL}/api/user/new`;
 		fetch(url, {
 			method: 'POST',
 			headers: {
@@ -46,6 +47,7 @@ class SignUp extends Component {
 			body: JSON.stringify({
 				firstname: this.state.firstname,
 				lastname: this.state.lastname,
+				username: this.state.username,
 				email: this.state.email,
 				password: this.state.password,
 			}),
@@ -59,7 +61,7 @@ class SignUp extends Component {
 	render() {
 		const { redirectToReferrer } = this.state;
 		if (redirectToReferrer) {
-			return <Redirect to='/user/:id' />;
+			return <Redirect to='/signin' />;
 		}
 
 		return (
@@ -72,7 +74,7 @@ class SignUp extends Component {
 								First Name
 							</label>
 							<input
-                                required
+								required
 								className='form-control'
 								type='text'
 								id='firstname'
@@ -85,7 +87,7 @@ class SignUp extends Component {
 								Last Name
 							</label>
 							<input
-                                required
+								required
 								className='form-control'
 								type='text'
 								id='lastname'
@@ -94,11 +96,25 @@ class SignUp extends Component {
 								onChange={this.handleChange}
 							/>
 							<br />
+							<label htmlFor='username' className='sign-in-text'>
+								Username
+							</label>
+							<input
+								required
+								className='form-control'
+								type='username'
+								id='username'
+								name='username'
+								value={this.state.username}
+								onChange={this.handleChange}
+							/>
+							<br />
+
 							<label htmlFor='email' className='sign-in-text'>
 								Email
 							</label>
 							<input
-                                required
+								required
 								className='form-control'
 								type='email'
 								id='email'
@@ -111,7 +127,7 @@ class SignUp extends Component {
 								Password
 							</label>
 							<input
-                                required
+								required
 								className='form-control'
 								type='password'
 								id='password'
@@ -124,7 +140,7 @@ class SignUp extends Component {
 								Confirm Password
 							</label>
 							<input
-                                required
+								required
 								className='form-control'
 								type='password'
 								id='passwordConfirm'
@@ -145,7 +161,6 @@ class SignUp extends Component {
 									</p>
 								)}
 								{!this.state.submit}
-
 							</div>
 						</form>
 					</MDBCol>

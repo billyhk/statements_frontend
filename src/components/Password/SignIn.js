@@ -9,7 +9,7 @@ class SignIn extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: '',
+			username: '',
 			password: '',
 			redirectToReferrer: false,
 		};
@@ -21,20 +21,20 @@ class SignIn extends Component {
 
 	signIn = (event) => {
 		event.preventDefault();
-		fetch(`${APIURL}/api/users/signin`, {
+		fetch(`${APIURL}/api/token/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8',
 			},
 			body: JSON.stringify({
-				email: this.state.email,
+				username: this.state.username,
 				password: this.state.password,
 			}),
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res.token);
-				this.props.setToken(res.token);
+				console.log(res.access);
+				this.props.setToken(res.access);
 				this.setState({ ...this.state, redirectToReferrer: true });
 			});
 	};
@@ -51,15 +51,15 @@ class SignIn extends Component {
 					<MDBCol md='12'>
 						<form onSubmit={this.checkPassword}>
 							<p className='h4 text-center mb-4'>Sign in</p>
-							<label htmlFor='defaultFormLoginEmailEx' className='sign-in-text'>
-								Your email
+							<label htmlFor='username' className='sign-in-text'>
+								Your username
 							</label>
 							<input
-								type='email'
-								id='email'
+								type='username'
+								id='username'
 								className='form-control'
-								name='email'
-								value={this.state.email}
+								name='username'
+								value={this.state.username}
 								onChange={this.handleChange}
 							/>
 							<br />

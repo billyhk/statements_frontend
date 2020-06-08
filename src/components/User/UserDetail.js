@@ -6,10 +6,9 @@ const User = (props) => {
 	const [user, setUser] = useState(null);
 	const [deleted, setDeleted] = useState(false);
 	const [error, setError] = useState(false);
-	const id = props.match.params.id;
 
 	useEffect(() => {
-		const url = `${APIURL}/api/users/${id}`;
+		const url = `${APIURL}/api/user/`;
 		fetch(url, {
 			method: 'GET',
 			headers: {
@@ -25,7 +24,7 @@ const User = (props) => {
 	}, []);
 
 	const onDeleteUser = (event) => {
-		const url = `${APIURL}/api/users/${id}`;
+		const url = `${APIURL}/api/user/`;
 		fetch(url, {
 			method: 'DELETE',
 			headers: {
