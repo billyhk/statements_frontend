@@ -5,6 +5,7 @@ import UserForm from './UserForm.js';
 
 const UserUpdate = (props) => {
 	const [user, setUser] = useState({});
+	const [updated, setUpdated] = useState(false);
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
@@ -45,14 +46,17 @@ const UserUpdate = (props) => {
 		})
 			.then((response) => response.json())
 			.then(setUser)
+			.then((res) => {
+				setUpdated(true);
+			})
 			.catch(() => {
 				setError(true);
 			});
 	};
-
-	if (user) {
+	if (updated) {
 		return <Redirect to={'/user'} />;
 	}
+
 	return (
 		<>
 			<UserForm

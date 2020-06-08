@@ -52,7 +52,7 @@ const User = (props) => {
 		<div className='user-account-wrapper'>
 			{!user ? (
 				<div className='home-title'>
-					Sorry, there was a problem getting the users
+					Loading...
 				</div>
 			) : (
 				<>
