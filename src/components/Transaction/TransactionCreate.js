@@ -13,7 +13,7 @@ const NewTransaction = (props) => {
 	const [transactionInputs, setTransactionInputs] = useState([]);
 
 	useEffect(() => {
-		console.log('refreshing create')
+		console.log('refreshing create');
 		const url = `${APIURL}/api/transaction/types`;
 		fetch(url, {
 			method: 'GET',
@@ -34,7 +34,7 @@ const NewTransaction = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const url = `${APIURL}/api/transaction/new`;
-		console.log(JSON.stringify(transaction))
+		console.log(JSON.stringify(transaction));
 		fetch(url, {
 			method: 'POST',
 			headers: {
@@ -52,10 +52,10 @@ const NewTransaction = (props) => {
 
 	const handleChange = (event) => {
 		event.persist();
-		let transactionFieldValues = {...transaction}
+		let transactionFieldValues = { ...transaction };
 		transactionFieldValues[event.target.name] = event.target.value;
-		console.log(transactionFieldValues)
-		setTransaction(transactionFieldValues)
+		console.log(transactionFieldValues);
+		setTransaction(transactionFieldValues);
 		// setTransaction({
 		// 	...transaction,
 		// 	[event.target.name]: event.target.value,
@@ -82,20 +82,29 @@ const NewTransaction = (props) => {
 	});
 
 	const handleDropdownSelect = (event) => {
-		let inputs = Object.entries(transactionTypes[event.target.value]).map(([key, value]) => {
-			return (
-				<>
-					<label id='user-form-label' htmlFor={key}>
-						{toTitleCase(key)}
-					</label>
-					<input required type={value} name={key} onChange={(e) => handleChange(e)}/>
-				</>
-			);
-		});
+		setTransactionInputs([]);
+		let inputs = Object.entries(transactionTypes[event.target.value]).map(
+			([key, value]) => {
+				return (
+					<>
+						<label id='user-form-label' htmlFor={key}>
+							{toTitleCase(key)}
+						</label>
+						<input
+							required
+							key={key + event.target.value}
+							type={value}
+							name={key}
+							onChange={(e) => handleChange(e)}
+						/>
+					</>
+				);
+			}
+		);
 		setTransactionInputs(inputs);
-		let newTransaction = {}
-		newTransaction[event.target.value] = {}
-		setTransaction(newTransaction)
+		let newTransaction = {};
+		newTransaction[event.target.value] = {};
+		setTransaction(newTransaction);
 	};
 
 	if (createdId) {
