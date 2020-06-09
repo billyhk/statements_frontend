@@ -109,7 +109,7 @@ const User = (props) => {
 						<span className='user-detail-header'>Control Panel</span>
 					</p>
 					<div className='user-detail-links'>
-						<Link to='/user/new-transaction'>{'\u00b7 Create New Transaction'}</Link>
+						<Link to='/user/new-transaction'>{'\u00b7 New Transaction'}</Link>
 						<Link to='/user/all-transactions'>
 							{'\u00b7 View Transaction History'}
 						</Link>

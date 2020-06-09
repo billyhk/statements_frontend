@@ -8,6 +8,7 @@ import SignIn from './components/Password/SignIn';
 import SignUp from './components/Password/SignUp';
 import UserDetail from './components/User/UserDetail';
 import UserUpdate from './components/User/UserUpdate';
+import TransactionCreate from './components/Transaction/TransactionCreate'
 
 const App = () => {
 	const [token, setToken] = useState('');
@@ -58,6 +59,11 @@ const App = () => {
 						);
 					}}
 				/>
+				<Route exact path='/user/new-transaction' render={(routerProps) => {
+					return (
+						<TransactionCreate match={routerProps.match} userToken={token}/>
+					)
+				}} />
 			</main>
 		</>
 	);

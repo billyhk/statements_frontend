@@ -1,7 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Select from 'react-dropdown-select';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
-const TransactionForm = ({ handleSubmit, handleChange }) => {};
+
+const TransactionForm = (props) => {
+	return (
+		<div className='user-account-wrapper'>
+			<p className='user-detail-header'>Record a New Transaction</p>
+			<form onSubmit={props.handleSubmit}>
+				<label id='user-form-label' htmlFor='Transaction Type'>
+					Transaction Type
+				</label>
+
+				<select
+					required
+					onChange={(event) => {
+						props.handleChange(event);
+						props.handleDropdownSelect(event);
+					}}>
+					<option value='' selected disabled hidden>
+						Select Transaction Type
+					</option>
+					{props.transactionTypes}
+				</select>
+				{props.transactionInputs}
+				<div className='text-center mt-4'>
+					<MDBBtn
+						color='indigo'
+						className='button-text'
+						onClick={props.handleSubmit}>
+						Submit
+					</MDBBtn>
+				</div>
+			</form>
+		</div>
+	);
+};
 
 export default TransactionForm;

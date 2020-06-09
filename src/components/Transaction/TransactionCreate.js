@@ -1,19 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { APIURL } from '../../config';
-import TransactionForm from './TransactionForm'
+import TransactionForm from './TransactionForm';
 
 const NewTransaction = (props) => {
 	const initialTransactionState = {
-		transactionType: '',
-		amount: '',
+		transactionFields: {},
 	};
 	const [transaction, setTransaction] = useState(initialTransactionState);
+	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
+	const [transactionInputs, setTransactionInputs] = useState([]);
+
+	useEffect(() => {
+		const url = `${APIURL}/api/transaction/types`;
+		fetch(url, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${props.userToken}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setTransactionTypes(data);
+			})
+			.catch(() => {
+				console.error();
+			});
+		// eslint-disable-next-line
+	}, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const url = `${APIURL}/api/user/transactions`;
+		const url = `${APIURL}/api/transaction/new`;
 
 		fetch(url, {
 			method: 'POST',
@@ -25,7 +44,7 @@ const NewTransaction = (props) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setCreatedId(data._id);
+				setCreatedId(data.id);
 			})
 			.catch((error) => console.error);
 	};
@@ -38,6 +57,52 @@ const NewTransaction = (props) => {
 		});
 	};
 
+	// convert snake_case data to Title Case for form
+	function toTitleCase(str) {
+		return str
+			.replace(/([a-z])([A-Z])/g, function (
+				allMatches,
+				firstMatch,
+				secondMatch
+			) {
+				return firstMatch + ' ' + secondMatch;
+			})
+			.toLowerCase()
+			.replace(/([ -_]|^)(.)/g, function (allMatches, firstMatch, secondMatch) {
+				return (firstMatch ? ' ' : '') + secondMatch.toUpperCase();
+			});
+	}
+	const transactionTypesOptions = Object.keys(transactionTypes).map((item) => {
+		return <option value={item}>{toTitleCase(item)}</option>;
+	});
+
+	const handleDropdownSelect = (event) => {
+		let inputs = Object.entries(transactionTypes).map(([key], [value]) => {
+			return (
+				<>
+					<label id='user-form-label' htmlFor={key}>
+						{toTitleCase(key)}
+					</label>
+					<input type={value} />
+				</>
+			);
+		});
+
+		// let inputs = Object.keys(transactionTypes[event.target.value]).map(
+		// 	(item) => {
+		// 		return (
+		// 			<>
+		// 				<label id='user-form-label' htmlFor={item}>
+		// 					{toTitleCase(item)}
+		// 				</label>
+		// 				<input type={item} />
+		// 			</>
+		// 		);
+		// 	}
+		// );
+		setTransactionInputs(inputs);
+	};
+
 	if (createdId) {
 		return <Redirect to={'/api/user/all-transactions'} />;
 	}
@@ -47,6 +112,9 @@ const NewTransaction = (props) => {
 			<TransactionForm
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
+				transactionTypes={transactionTypesOptions}
+				handleDropdownSelect={handleDropdownSelect}
+				transactionInputs={transactionInputs}
 			/>
 		</>
 	);
