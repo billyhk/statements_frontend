@@ -8,6 +8,12 @@ const UserUpdate = (props) => {
 	const [updated, setUpdated] = useState(false);
 	const [error, setError] = useState(false);
 
+	function handleKeyDown(event) {
+		if (event.key === 'Enter') {
+			handleSubmit();
+		}
+	};
+
 	useEffect(() => {
 		const url = `${APIURL}/api/user`;
 		fetch(url, {
@@ -33,7 +39,7 @@ const UserUpdate = (props) => {
 	};
 
 	const handleSubmit = (event) => {
-		event.preventDefault();
+		// event.preventDefault();
 		const url = `${APIURL}/api/user`;
 
 		fetch(url, {
@@ -63,6 +69,7 @@ const UserUpdate = (props) => {
 				user={user}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
+				onKeyDown={handleKeyDown}
 			/>
 		</>
 	);

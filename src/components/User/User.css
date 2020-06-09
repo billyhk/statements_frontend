@@ -1,0 +1,97 @@
+/* full page background */
+.user-account-wrapper {
+	background: rgb(220, 229, 237);
+	height: 100%;
+	padding-bottom: 10vh;
+}
+/* user detail page */
+
+.user-detail-header {
+	display: grid;
+	padding: 8vh 0 0 0;
+	margin: 0 6vh 4vh 6vh;
+	font-size: 2.5rem;
+	text-align: center;
+	border-bottom: 2px solid rgba(48, 92, 96, 0.3);
+}
+
+/* user form */
+#user-form {
+	position: relative;
+	bottom: 10vh;
+	line-height: 4vh;
+}
+
+#user-update-input {
+	line-height: 3vh;
+	text-align: center;
+}
+
+#user-form-label {
+	/* text-align: center; */
+	margin-top: 3vh;
+	color: rgb(66, 84, 116);
+	font-weight: 400;
+}
+
+#user-form-label-password {
+	/* text-align: center; */
+	margin-top: 4vh;
+	font-weight: 500;
+	color: rgba(208, 48, 48, 0.755);
+}
+
+/* container just for keys & values */
+.user-account-info {
+	padding-top: 4vh;
+	display: block;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 0.1em;
+}
+
+.user-detail-key {
+	display: inline;
+	color: rgb(0, 62, 128);
+	text-align: center;
+	padding: 2vh 5% 0 5%;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+	font-size: 1.2rem;
+}
+
+.user-detail-value {
+	color: rgb(75, 103, 194);
+	font-weight: 400;
+
+	position: relative;
+	bottom: 1.8vh;
+
+	padding: 1.2vh 10%;
+	/* border-top: 2px solid rgba(0, 0, 0, 0.303); */
+	font-size: 1.5rem;
+}
+
+/* container for links */
+.user-detail-links {
+	font-size: 1.5rem;
+	justify-content: center;
+	text-align: left;
+	display: grid;
+	line-height: 1.5em;
+	font-weight: 500;
+}
+
+/* container for buttons */
+.user-detail-buttons {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 10vh;
+}
+
+@media (min-height: 880px) {
+	.user-account-wrapper {
+		height: 160vh;
+	}
+}

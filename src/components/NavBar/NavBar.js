@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 
 const NavBar = ({ userToken, handleSignOut }) => {
+	const [expanded, setExpanded] = useState();
+
+	function closeNav() {
+		if (!expanded) {
+			setExpanded(true)
+		} else {
+			setExpanded(false);
+		}
+	}
+	function openNav() {
+		if (expanded) {
+			setExpanded(false);
+		} else {
+			setExpanded(true);
+		}
+	}
+
 	return (
 		<div className='header-wrapper'>
-			<Navbar expand='lg' className='header-nav'>
+			<Navbar
+				expand='lg'
+				className='header-nav'
+				onToggle={openNav}
+				expanded={expanded}>
 				<Navbar.Brand>
 					<span className='header-title'>Statements</span>
 				</Navbar.Brand>
 				<Navbar.Toggle
 					aria-controls='basic-navbar-nav'
 					className='burger-btn'
+					onClick={openNav}
 				/>
 				<Navbar.Collapse id='basic-navbar-nav'>
-					<Nav className='ml-auto'>
+					<Nav className='ml-auto' onClick={closeNav}>
 						<Link to='/'>
 							<i className='fas fa-home'></i>
-							<span className='toggle-hidden-nav' id='toggle-hidden-nav'>Home
+							<span className='toggle-hidden-nav' id='toggle-hidden-nav'>
+								Home
 							</span>
 						</Link>
 						{userToken ? (
@@ -47,7 +70,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 						) : (
 							<Link to='/signin'>
 								<i className='fas fa-lock'></i>
-								<span className='toggle-hidden-nav'>   Sign In</span>
+								<span className='toggle-hidden-nav'> Sign In</span>
 							</Link>
 						)}
 					</Nav>

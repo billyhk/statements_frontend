@@ -15,6 +15,10 @@ const App = () => {
 	async function handleSignOut() {
 		await setToken(null);
 	}
+	function scrollUp() {
+		window.scrollTo(0, 0);
+	}
+
 	return (
 		<>
 			<NavBar userToken={token} handleSignOut={handleSignOut} />
@@ -37,6 +41,7 @@ const App = () => {
 								match={routerProps.match}
 								userToken={token}
 								handleSignOut={handleSignOut}
+								scrollUp={scrollUp}
 							/>
 						);
 					}}

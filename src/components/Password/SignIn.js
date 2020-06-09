@@ -19,8 +19,14 @@ class SignIn extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
+	handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			this.signIn();
+		}
+	};
+
 	signIn = (event) => {
-		event.preventDefault();
+		// event.preventDefault();
 		fetch(`${APIURL}/api/token/`, {
 			method: 'POST',
 			headers: {
@@ -33,12 +39,11 @@ class SignIn extends Component {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res.access);
 				if (res.access) {
 					this.props.setToken(res.access);
 					this.setState({ ...this.state, redirectToReferrer: true });
 				} else {
-					alert("User information is incorrect.")
+					alert('User information is incorrect.');
 				}
 			})
 			.catch(console.error);
@@ -53,19 +58,21 @@ class SignIn extends Component {
 		return (
 			<MDBContainer>
 				<MDBRow>
-					<MDBCol md='12'>
-						<form onSubmit={this.checkPassword}>
+					<MDBCol md='8'>
+						<form onSubmit={this.checkPassword} id='sign-in-form'>
 							<p className='h4 text-center mb-4'>Sign in</p>
 							<label htmlFor='username' className='sign-in-text'>
 								Your username
 							</label>
 							<input
+							required
 								type='username'
 								id='username'
 								className='form-control'
 								name='username'
 								value={this.state.username}
 								onChange={this.handleChange}
+								onKeyDown={this.handleKeyDown}
 							/>
 							<br />
 							<label
@@ -74,12 +81,14 @@ class SignIn extends Component {
 								Your password
 							</label>
 							<input
+							required
 								type='password'
 								id='password'
 								className='form-control'
 								name='password'
 								value={this.state.password}
 								onChange={this.handleChange}
+								onKeyDown={this.handleKeyDown}
 							/>
 							<div className='text-center mt-4'>
 								<MDBBtn color='indigo' onClick={this.signIn}>

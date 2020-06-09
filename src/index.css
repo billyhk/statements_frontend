@@ -9,24 +9,16 @@ body {
 	margin: 0 auto;
 }
 
-.user-account-wrapper {
-	background: rgb(205, 205, 205);
-	height: 98vh;
-	/* min-width: 100vw; */
-	/* position: fixed; */
-}
-
-.user-account-info {
-	padding-top: 35vh;
-	display: grid;
-	align-items: center;
-	justify-content: center;
-}
-
 form {
-	margin: 4vmin 4vh;
+	background-color: rgba(243, 244, 245, 0.9);
+	color: #6a89f0;
+	padding: 2.5rem 2rem 0 2rem;
+	text-align: left;
 	display: grid;
 	min-width: 60vmin;
+	padding-bottom: 8%;
+	border-radius: 0.2cm;
+	margin: 10vmin;
 }
 
 .header-nav {
@@ -94,6 +86,13 @@ form {
 @media (min-width: 992px) {
 	.toggle-hidden-nav {
 		display: none;
+	}
+}
+
+@media (min-width: 1200px) {
+	#sign-in-form {
+		position: auto;
+		/* left: 100%; */
 	}
 }
 

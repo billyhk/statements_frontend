@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { APIURL } from '../../config';
 import { Link, Redirect } from 'react-router-dom';
 
+import './User.css';
+
 const User = (props) => {
 	const [user, setUser] = useState(null);
 	const [deleted, setDeleted] = useState(false);
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
+		props.scrollUp();
 		const url = `${APIURL}/api/user`;
 		fetch(url, {
 			method: 'GET',
@@ -25,7 +28,8 @@ const User = (props) => {
 
 	const onDeleteUser = (event) => {
 		let confirm = prompt(
-			"This action will delete the current user. Please type 'confirm' to delete", ''
+			"This action will delete the current user. Please type 'confirm' to delete",
+			''
 		);
 		if (confirm === 'confirm') {
 			const url = `${APIURL}/api/user`;
@@ -51,32 +55,79 @@ const User = (props) => {
 	return (
 		<div className='user-account-wrapper'>
 			{!user ? (
-				<div className='home-title'>
-					Loading...
-				</div>
+				<div className='home-title'>Loading...</div>
 			) : (
-				<>
+				<div>
+					<p>
+						<span className='user-detail-header'>Account Information</span>
+					</p>
 					<div className='user-account-info'>
-						<h1>Your Account</h1>
-						<h2>{user.firstname}</h2>
-						<h2>{user.lastname}</h2>
-						<h2>{user.username}</h2>
-						<h2>{user.email}</h2>
-
+						<p>
+							<span className='user-detail-key'>First Name:</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>{user.firstname}</span>
+						</p>
+						<p>
+							<span className='user-detail-key'>Last Name:</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>{user.lastname}</span>
+						</p>
+						<p>
+							<span className='user-detail-key'>UserName:</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>{user.username}</span>
+						</p>
+						<p>
+							<span className='user-detail-key'>Email:</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>{user.email}</span>
+						</p>
+						{!user.lastLogin ? null : (
+							<>
+								<p>
+									<span className='user-detail-key'>Last Logged In:</span>
+								</p>
+								<p>
+									<span className='user-detail-value'>{user.lastLogin}</span>
+								</p>
+							</>
+						)}
+						<p>
+							<span className='user-detail-key'>Date Joined:</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>
+								{user.dateJoined.substr(0, 10)}
+							</span>
+						</p>
 					</div>
-					<Link to='/user/new-transaction'>Create New Transaction</Link>
-					<Link to='/user/all-transactions'>View Your Transaction History</Link>
-					<Link to='/user/balance-statement'>View Your Balance Statement</Link>
-
-					<div className='mt-5 link'>
-						<Link className='btn btn-info item' to='/user/edit'>
-							Update Account Information
+					<p>
+						<span className='user-detail-header'>Control Panel</span>
+					</p>
+					<div className='user-detail-links'>
+						<Link to='/user/new-transaction'>{'\u00b7 Create New Transaction'}</Link>
+						<Link to='/user/all-transactions'>
+							{'\u00b7 View Transaction History'}
+						</Link>
+						<Link to='/user/balance-statement'>
+							{'\u00b7 View Balance Statement'}
 						</Link>
 					</div>
-					<button onClick={onDeleteUser} className='btn btn-danger item'>
-						Delete Account
-					</button>
-				</>
+					<div className='user-detail-buttons'>
+						<div className='mt-5 link'>
+							<Link className='btn btn-info item' to='/user/edit' onClick={props.scrollUp}>
+								Update Account Information
+							</Link>
+						</div>
+						<button onClick={onDeleteUser} className='btn btn-danger item'>
+							Delete Account
+						</button>
+					</div>
+				</div>
 			)}
 		</div>
 	);
