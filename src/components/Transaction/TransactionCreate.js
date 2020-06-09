@@ -4,10 +4,10 @@ import { APIURL } from '../../config';
 import TransactionForm from './TransactionForm';
 
 const NewTransaction = (props) => {
-	const initialTransactionState = {
-		transactionFields: {},
-	};
-	const [transaction, setTransaction] = useState(initialTransactionState);
+	// const initialTransactionState = {
+	// 	transactionFields: {},
+	// };
+	const [transaction, setTransaction] = useState({});
 	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
 	const [transactionInputs, setTransactionInputs] = useState([]);
@@ -33,7 +33,7 @@ const NewTransaction = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const url = `${APIURL}/api/transaction/new`;
-
+		console.log(JSON.stringify(transaction))
 		fetch(url, {
 			method: 'POST',
 			headers: {
@@ -51,10 +51,14 @@ const NewTransaction = (props) => {
 
 	const handleChange = (event) => {
 		event.persist();
-		setTransaction({
-			...transaction,
-			[event.target.name]: event.target.value,
-		});
+		let transactionFieldValues = {...transaction}
+		transactionFieldValues[event.target.name] = event.target.value;
+		console.log(transactionFieldValues)
+		setTransaction(transactionFieldValues)
+		// setTransaction({
+		// 	...transaction,
+		// 	[event.target.name]: event.target.value,
+		// });
 	};
 
 	// convert snake_case data to Title Case for form
@@ -77,29 +81,16 @@ const NewTransaction = (props) => {
 	});
 
 	const handleDropdownSelect = (event) => {
-		let inputs = Object.entries(transactionTypes).map(([key], [value]) => {
+		let inputs = Object.entries(transactionTypes[event.target.value]).map(([key, value]) => {
 			return (
 				<>
 					<label id='user-form-label' htmlFor={key}>
 						{toTitleCase(key)}
 					</label>
-					<input type={value} />
+					<input required type={value} name={key} onChange={(e) => handleChange(e)}/>
 				</>
 			);
 		});
-
-		// let inputs = Object.keys(transactionTypes[event.target.value]).map(
-		// 	(item) => {
-		// 		return (
-		// 			<>
-		// 				<label id='user-form-label' htmlFor={item}>
-		// 					{toTitleCase(item)}
-		// 				</label>
-		// 				<input type={item} />
-		// 			</>
-		// 		);
-		// 	}
-		// );
 		setTransactionInputs(inputs);
 	};
 
