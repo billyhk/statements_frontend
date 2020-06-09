@@ -13,10 +13,10 @@ const TransactionForm = (props) => {
 				</label>
 
 				<select
-					required
+                    required
 					onChange={(event) => {
-						props.handleChange(event);
-						props.handleDropdownSelect(event);
+						// props.handleChange(event);
+                        props.handleDropdownSelect(event);
 					}}>
 					<option value='' selected disabled hidden>
 						Select Transaction Type

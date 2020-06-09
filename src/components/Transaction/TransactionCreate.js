@@ -13,6 +13,7 @@ const NewTransaction = (props) => {
 	const [transactionInputs, setTransactionInputs] = useState([]);
 
 	useEffect(() => {
+		console.log('refreshing create')
 		const url = `${APIURL}/api/transaction/types`;
 		fetch(url, {
 			method: 'GET',
@@ -92,6 +93,9 @@ const NewTransaction = (props) => {
 			);
 		});
 		setTransactionInputs(inputs);
+		let newTransaction = {}
+		newTransaction[event.target.value] = {}
+		setTransaction(newTransaction)
 	};
 
 	if (createdId) {
