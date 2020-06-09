@@ -27,8 +27,9 @@ const TransactionForm = (props) => {
 				<div className='text-center mt-4'>
 					<MDBBtn
 						color='indigo'
-						className='button-text'
-						onClick={props.handleSubmit}>
+                        className='button-text'
+                        type='submit'
+						>
 						Submit
 					</MDBBtn>
 				</div>

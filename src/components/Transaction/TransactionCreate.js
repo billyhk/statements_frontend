@@ -13,7 +13,6 @@ const NewTransaction = (props) => {
 	const [transactionInputs, setTransactionInputs] = useState([]);
 
 	useEffect(() => {
-		console.log('refreshing create');
 		const url = `${APIURL}/api/transaction/types`;
 		fetch(url, {
 			method: 'GET',
@@ -34,27 +33,28 @@ const NewTransaction = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const url = `${APIURL}/api/transaction/new`;
-		console.log(JSON.stringify(transaction));
-		fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
-			},
-			body: JSON.stringify(transaction),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setCreatedId(data.id);
-			})
-			.catch((error) => console.error);
+		console.log('event:', event.target);
+		// fetch(url, {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		Authorization: `Bearer ${props.userToken}`,
+		// 	},
+		// 	body: JSON.stringify(transaction),
+		// })
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		setCreatedId(data.id);
+		// 	})
+		// 	.catch((error) => console.error);
 	};
 
 	const handleChange = (event) => {
 		event.persist();
-		let transactionFieldValues = { ...transaction };
+		let transactionFieldValues = JSON.parse(JSON.stringify(transaction))
 		transactionFieldValues[event.target.name] = event.target.value;
 		console.log(transactionFieldValues);
+		// Object.assign(transactionFieldValues);
 		setTransaction(transactionFieldValues);
 		// setTransaction({
 		// 	...transaction,
@@ -102,13 +102,13 @@ const NewTransaction = (props) => {
 			}
 		);
 		setTransactionInputs(inputs);
-		let newTransaction = {};
+		const newTransaction = {};
 		newTransaction[event.target.value] = {};
 		setTransaction(newTransaction);
 	};
 
 	if (createdId) {
-		return <Redirect to={'/api/user/all-transactions'} />;
+		return <Redirect to={'/user/all-transactions'} />;
 	}
 
 	return (
