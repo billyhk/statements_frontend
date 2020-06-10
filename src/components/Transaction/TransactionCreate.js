@@ -8,6 +8,9 @@ const NewTransaction = (props) => {
 	// 	transactionFields: {},
 	// };
 	const [transaction, setTransaction] = useState({});
+	const [newTransaction, setNewTransaction] = useState({});
+	const [transactionDetail, setTransactionDetail] = useState({});
+	// const [transactionFullDetail, setTransactionFullDetail] = useState({})
 	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
 	const [transactionInputs, setTransactionInputs] = useState([]);
@@ -33,34 +36,62 @@ const NewTransaction = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const url = `${APIURL}/api/transaction/new`;
-		console.log('event:', event.target);
-		// fetch(url, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 		Authorization: `Bearer ${props.userToken}`,
-		// 	},
-		// 	body: JSON.stringify(transaction),
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		setCreatedId(data.id);
-		// 	})
-		// 	.catch((error) => console.error);
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${props.userToken}`,
+			},
+			body: JSON.stringify(newTransaction),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setCreatedId(data.id);
+			})
+			.catch((error) => console.error);
+	};
+
+	const handleDropdownSelect = (event) => {
+		setTransactionInputs([]);
+		let inputs = Object.entries(transactionTypes[event.target.value]).map(
+			([key, value]) => {
+				return (
+					<>
+						<label id='user-form-label' htmlFor={key}>
+							{toTitleCase(key)}
+						</label>
+						<input
+							required
+							key={key + event.target.value}
+							type={value}
+							name={key}
+							onChange={handleChange}
+						/>
+					</>
+				);
+			}
+		);
+		setTransactionInputs(inputs);
+		newTransaction[event.target.value] = {};
+		setNewTransaction(newTransaction);
+		setTransactionDetail(() => {});
 	};
 
 	const handleChange = (event) => {
 		event.persist();
-		let transactionFieldValues = JSON.parse(JSON.stringify(transaction))
-		transactionFieldValues[event.target.name] = event.target.value;
-		console.log(transactionFieldValues);
-		// Object.assign(transactionFieldValues);
-		setTransaction(transactionFieldValues);
-		// setTransaction({
-		// 	...transaction,
-		// 	[event.target.name]: event.target.value,
-		// });
+		let newData = {};
+		newData[event.target.name] = event.target.value;
+		setNewTransaction((data) => {
+			Object.keys(data).forEach((key) => {
+				data[key] = {
+					...data[key],
+					...newData,
+				};
+			});
+			return data;
+		});
 	};
+	console.log(newTransaction);
 
 	// convert snake_case data to Title Case for form
 	function toTitleCase(str) {
@@ -80,32 +111,6 @@ const NewTransaction = (props) => {
 	const transactionTypesOptions = Object.keys(transactionTypes).map((item) => {
 		return <option value={item}>{toTitleCase(item)}</option>;
 	});
-
-	const handleDropdownSelect = (event) => {
-		setTransactionInputs([]);
-		let inputs = Object.entries(transactionTypes[event.target.value]).map(
-			([key, value]) => {
-				return (
-					<>
-						<label id='user-form-label' htmlFor={key}>
-							{toTitleCase(key)}
-						</label>
-						<input
-							required
-							key={key + event.target.value}
-							type={value}
-							name={key}
-							onChange={(e) => handleChange(e)}
-						/>
-					</>
-				);
-			}
-		);
-		setTransactionInputs(inputs);
-		const newTransaction = {};
-		newTransaction[event.target.value] = {};
-		setTransaction(newTransaction);
-	};
 
 	if (createdId) {
 		return <Redirect to={'/user/all-transactions'} />;
