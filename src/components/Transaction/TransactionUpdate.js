@@ -45,13 +45,36 @@ const TransactionUpdate = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				setTransaction(data);
+				const inputs = Object.entries(
+					Object.entries(data).map(([key, value]) => {
+						// transactionType = key;
+						return value;
+					})[0]
+				).map(([key, value]) => {
+					return (
+						<>
+							<label key={key} id='user-form-label' htmlFor={key}>
+								{props.toTitleCase(key)}
+							</label>
+							<input
+								required
+								id='user-update-input'
+								key={key}
+								type={value}
+								name={key}
+								onChange={handleChange}
+								defaultValue={value}></input>
+						</>
+					);
+				});
+				setTransactionInputs(inputs);
+				// setTransactionInputs(<div>Hi</div>);
 			})
 			.catch(() => {
 				console.error();
 			});
 		// eslint-disable-next-line
 	}, []);
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const url = `${APIURL}/api/transaction/${transactionId}`;
@@ -71,44 +94,15 @@ const TransactionUpdate = (props) => {
 	};
 
 	let inputValues = '';
-	let dropDownValue = '';
+	let dropdownValue = '';
 	inputValues = Object.entries(
 		Object.entries(transaction).map(([key, value]) => {
-			dropDownValue = key;
+			dropdownValue = <span className='fixed-transaction-type'>{props.toTitleCase(key)}</span>;
 			return value;
 		})[0]
 	).map(([key, value]) => {
 		return value;
 	});
-	console.log(inputValues);
-
-	const handleDropdownSelect = (event) => {
-		setTransactionInputs([]);
-
-		let inputs = Object.entries(transactionTypes[event.target.value]).map(
-			([key, value]) => {
-				return (
-					<>
-						<label key={key} id='user-form-label' htmlFor={key}>
-							{props.toTitleCase(key)}
-						</label>
-						<input
-							defaultValue={inputValues}
-							required
-							key={key + event.target.value}
-							type={value}
-							name={key}
-							onChange={handleChange}
-						/>
-					</>
-				);
-			}
-		);
-		setTransactionInputs(inputs);
-		updatedTransaction[event.target.value] = {};
-		setUpdatedTransaction(updatedTransaction);
-		setTransactionDetail(() => {});
-	};
 
 	const handleChange = (event) => {
 		event.persist();
@@ -121,6 +115,7 @@ const TransactionUpdate = (props) => {
 					...newData,
 				};
 			});
+			console.log(data)
 			return data;
 		});
 	};
@@ -132,16 +127,6 @@ const TransactionUpdate = (props) => {
 			</option>
 		);
 	});
-
-	// const transactionTypesValues = Object.keys(transactionTypes).map((item) => {
-	// 	return (
-	// 		<option value={item} key={item}>
-	// 			{props.toTitleCase(item)}
-	// 		</option>
-	// 	);
-	// });
-
-	// setTransactionValues = {}
 
 	if (createdId) {
 		return <Redirect to={`/user/transaction/${transactionId}`} />;
@@ -156,11 +141,10 @@ const TransactionUpdate = (props) => {
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 				transactionTypes={transactionTypesOptions}
-				handleDropdownSelect={handleDropdownSelect}
 				transactionInputs={transactionInputs}
 				inputValues={inputValues}
 				onClick={props.scrollUp}
-				dropDownValue={dropDownValue}
+				formSelectTag={dropdownValue}
 			/>
 		</div>
 	);

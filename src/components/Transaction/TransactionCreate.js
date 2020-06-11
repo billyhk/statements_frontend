@@ -98,6 +98,22 @@ const NewTransaction = (props) => {
 		);
 	});
 
+	let formSelectTag = (
+		<select
+			required
+			name='Transaction Type'
+			id='form-transaction-type'
+			onChange={(event) => {
+				handleDropdownSelect(event);
+			}}>
+			<option selected disabled hidden>
+				Select Transaction Type
+			</option>
+			{transactionTypesOptions}
+		</select>
+	);
+
+
 	if (createdId) {
 		return <Redirect to={'/user/all-transactions'} />;
 	}
@@ -112,6 +128,7 @@ const NewTransaction = (props) => {
 				handleDropdownSelect={handleDropdownSelect}
 				transactionInputs={transactionInputs}
 				onClick={props.scrollUp}
+				formSelectTag={formSelectTag}
 			/>
 		</div>
 	);

@@ -4,35 +4,21 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 import '../User/User.css';
 
-
 const TransactionForm = (props) => {
 	return (
 		<>
 			<form onSubmit={props.handleSubmit}>
-				<label id='user-form-label' htmlFor='Transaction Type'>
+				<label className='make-center' id='user-form-label' htmlFor='Transaction Type'>
 					Transaction Type
 				</label>
-
-				<select
-					required
-					// defaultValue={props.dropDownValue}
-					name='Transaction Type'
-					onChange={(event) => {
-						// props.handleChange(event);
-						props.handleDropdownSelect(event);
-					}}>
-					<option selected disabled hidden>
-						Select Transaction Type
-					</option>
-					{props.transactionTypes}
-				</select>
+				{props.formSelectTag}
 				{props.transactionInputs}
 				<div className='text-center mt-4'>
 					<MDBBtn color='indigo' className='button-text' type='submit'>
 						Submit
 					</MDBBtn>
 					<Link to='/user/all-transactions' className='btn btn-link'>
-						<MDBBtn color='black'>Cancel and Return to All Transaction</MDBBtn>
+						<MDBBtn color='black'>Cancel and Return to All Transactions</MDBBtn>
 					</Link>
 				</div>
 			</form>

@@ -6,7 +6,7 @@ import './Transaction.css';
 import '../User/User.css';
 
 const TransactionDetail = (props) => {
-	const [transaction, setTransaction] = useState({temp: {}});
+	const [transaction, setTransaction] = useState({ temp: {} });
 	const [deleted, setDeleted] = useState(false);
 	const [error, setError] = useState(false);
 	// const [transactinoType, setTransactionType] = useState('')
@@ -41,14 +41,14 @@ const TransactionDetail = (props) => {
 		})[0]
 	).map(([key, value]) => {
 		return (
-			<div className='user-account-info'>
+			<>
 				<p>
-					<span className='user-detail-key'>{key}</span>
+					<span className='user-detail-key'>{props.toTitleCase(key)}</span>
 				</p>
 				<p>
 					<span className='user-detail-value'>{value}</span>
 				</p>
-			</div>
+			</>
 		);
 	});
 
@@ -88,7 +88,17 @@ const TransactionDetail = (props) => {
 					<p>
 						<span className='user-detail-header'>{`Details for Transaction ID: ${transactionId}`}</span>
 					</p>
-					{details}
+
+					<div className='user-account-info'>
+						<p>
+							<span className='user-detail-key'>Transaction Type</span>
+						</p>
+						<p>
+							<span className='user-detail-value'>{props.toTitleCase(transactionType)}</span>
+						</p>
+						{details}
+					</div>
+
 					<div className='user-detail-buttons'>
 						<div className='mt-5 link'>
 							<Link

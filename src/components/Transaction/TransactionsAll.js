@@ -34,10 +34,13 @@ const TransactionsAll = (props) => {
 				setError(true);
 			});
 	}
+
 	return (
 		<div className='user-account-wrapper'>
 			<p className='user-detail-header'>Transaction History</p>
-			{transactions.length > 0 ? (
+			{!transactions ? (
+				<div className='home-title'>Loading...</div>
+			) : (
 				<Table>
 					<thead>
 						<tr>
@@ -86,10 +89,6 @@ const TransactionsAll = (props) => {
 						);
 					})}
 				</Table>
-			) : (
-				<h1>You have not recorded any transactions yet. Please fill out <Link to='new-transaction'>
-					this form
-				</Link> to add one.</h1>
 			)}
 		</div>
 	);
