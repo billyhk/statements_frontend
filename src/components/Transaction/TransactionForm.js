@@ -15,6 +15,7 @@ const TransactionForm = (props) => {
 
 				<select
 					required
+					// defaultValue={props.dropDownValue}
 					name='Transaction Type'
 					onChange={(event) => {
 						// props.handleChange(event);

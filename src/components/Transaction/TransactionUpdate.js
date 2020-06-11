@@ -6,15 +6,15 @@ import TransactionForm from './TransactionForm';
 import './Transaction.css';
 import '../User/User.css';
 
-
 const TransactionUpdate = (props) => {
 	const [updatedTransaction, setUpdatedTransaction] = useState({});
 	const [transactionDetail, setTransactionDetail] = useState({});
 	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
 	const [transactionInputs, setTransactionInputs] = useState([]);
-	const [transactionId, setTransactionId] = useState(props.match.params.id);
-	const [thisTransactionValues, setTransactionValues] = useState('');
+	const [transaction, setTransaction] = useState({ temp: {} });
+
+	let transactionId = props.match.params.id;
 
 	useEffect(() => {
 		const url = `${APIURL}/api/transaction/types`;
@@ -44,8 +44,7 @@ const TransactionUpdate = (props) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(Object.values(data).map((key) => data[key][0]));
-				setTransactionValues(Object.values(data).map((key) => data[key][0]));
+				setTransaction(data);
 			})
 			.catch(() => {
 				console.error();
@@ -71,10 +70,20 @@ const TransactionUpdate = (props) => {
 			.catch((error) => console.error);
 	};
 
+	let inputValues = '';
+	let dropDownValue = '';
+	inputValues = Object.entries(
+		Object.entries(transaction).map(([key, value]) => {
+			dropDownValue = key;
+			return value;
+		})[0]
+	).map(([key, value]) => {
+		return value;
+	});
+	console.log(inputValues);
+
 	const handleDropdownSelect = (event) => {
 		setTransactionInputs([]);
-
-		// let inputValues = Object.values(thisTransactionValues[event.target.value]).map((item) => {return item})
 
 		let inputs = Object.entries(transactionTypes[event.target.value]).map(
 			([key, value]) => {
@@ -84,7 +93,7 @@ const TransactionUpdate = (props) => {
 							{props.toTitleCase(key)}
 						</label>
 						<input
-							defaultValue={thisTransactionValues}
+							defaultValue={inputValues}
 							required
 							key={key + event.target.value}
 							type={value}
@@ -149,7 +158,9 @@ const TransactionUpdate = (props) => {
 				transactionTypes={transactionTypesOptions}
 				handleDropdownSelect={handleDropdownSelect}
 				transactionInputs={transactionInputs}
+				inputValues={inputValues}
 				onClick={props.scrollUp}
+				dropDownValue={dropDownValue}
 			/>
 		</div>
 	);
