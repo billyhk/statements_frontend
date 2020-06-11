@@ -113,10 +113,10 @@ const User = (props) => {
 							{'\u00b7 New Transaction'}
 						</Link>
 						<Link to='/user/all-transactions' onClick={props.scrollUp}>
-							{'\u00b7 View Transaction History'}
+							{'\u00b7 Transaction History'}
 						</Link>
-						<Link to='/user/balance-statement' onClick={props.scrollUp}>
-							{'\u00b7 View Balance Statement'}
+						<Link to='/user/financial-statements' onClick={props.scrollUp}>
+							{'\u00b7 Generate Financial Statements'}
 						</Link>
 					</div>
 					<div className='user-detail-buttons'>

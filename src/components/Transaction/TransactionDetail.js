@@ -94,13 +94,21 @@ const TransactionDetail = (props) => {
 							<span className='user-detail-key'>Transaction Type</span>
 						</p>
 						<p>
-							<span className='user-detail-value'>{props.toTitleCase(transactionType)}</span>
+							<span className='user-detail-value'>
+								{props.toTitleCase(transactionType)}
+							</span>
 						</p>
 						{details}
 					</div>
 
 					<div className='user-detail-buttons'>
 						<div className='mt-5 link'>
+							<Link
+								className='btn btn-dark'
+								to={`/user/all-transactions`}
+								onClick={props.scrollUp}>
+								Return To All Transactions
+							</Link>
 							<Link
 								className='btn btn-info item'
 								to={`/user/transaction/${transactionId}/edit`}

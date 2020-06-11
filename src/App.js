@@ -19,6 +19,9 @@ import TransactionsAll from './components/Transaction/TransactionsAll';
 import TransactionDetail from './components/Transaction/TransactionDetail';
 import TransactionUpdate from './components/Transaction/TransactionUpdate';
 
+//financial statements
+import FinancialStatements from './components/Statement/FinancialStatements' 
+
 
 const App = () => {
 	const [token, setToken] = useState('');
@@ -130,6 +133,21 @@ const App = () => {
 					render={(routerProps) => {
 						return (
 							<TransactionUpdate
+								match={routerProps.match}
+								userToken={token}
+								toTitleCase={toTitleCase}
+								scrollUp={scrollUp}
+								{...routerProps}
+							/>
+						);
+					}}
+				/>
+				<Route
+					exact
+					path='/user/financial-statements'
+					render={(routerProps) => {
+						return (
+							<FinancialStatements
 								match={routerProps.match}
 								userToken={token}
 								toTitleCase={toTitleCase}
