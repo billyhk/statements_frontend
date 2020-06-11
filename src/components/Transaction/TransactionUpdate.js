@@ -7,7 +7,7 @@ import './Transaction.css';
 import '../User/User.css';
 
 const TransactionUpdate = (props) => {
-	const [updatedTransaction, setUpdatedTransaction] = useState({});
+	// const [updatedTransaction, setUpdatedTransaction] = useState({});
 	const [transactionDetail, setTransactionDetail] = useState({});
 	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
@@ -51,7 +51,16 @@ const TransactionUpdate = (props) => {
 						return value;
 					})[0]
 				).map(([key, value]) => {
-					return (
+					let type;
+					if(key != 'id') {
+						if (key === 'accounting_date' || key === 'transaction_date') {
+							type = 'date'
+						} else if (key === 'description') {
+							type = 'text'
+						} else {
+							type = 'number'
+						}
+						return (
 						<>
 							<label key={key} id='user-form-label' htmlFor={key}>
 								{props.toTitleCase(key)}
@@ -60,12 +69,14 @@ const TransactionUpdate = (props) => {
 								required
 								id='user-update-input'
 								key={key}
-								type={value}
+								type={type}
 								name={key}
 								onChange={handleChange}
 								defaultValue={value}></input>
 						</>
 					);
+				}
+					
 				});
 				setTransactionInputs(inputs);
 				// setTransactionInputs(<div>Hi</div>);
@@ -84,7 +95,7 @@ const TransactionUpdate = (props) => {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${props.userToken}`,
 			},
-			body: JSON.stringify(updatedTransaction),
+			body: JSON.stringify(transaction),
 		})
 			.then((response) => response.json())
 			.then((data) => {
@@ -108,7 +119,7 @@ const TransactionUpdate = (props) => {
 		event.persist();
 		let newData = {};
 		newData[event.target.name] = event.target.value;
-		setUpdatedTransaction((data) => {
+		setTransaction((data) => {
 			Object.keys(data).forEach((key) => {
 				data[key] = {
 					...data[key],

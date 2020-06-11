@@ -53,11 +53,11 @@ const TransactionsAll = (props) => {
 								</span>
 							</th>
 							<th>
-								<span className='transaction-detail-headers'>Record Date</span>
+								<span className='transaction-detail-headers'>Transaction Date</span>
 							</th>
 							<th>
 								<span className='transaction-detail-headers'>
-									Effective Date
+									Accouting Date
 								</span>
 							</th>
 						</tr>
