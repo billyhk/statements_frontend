@@ -3,14 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { APIURL } from '../../config';
 import TransactionForm from './TransactionForm';
 
+import '../User/User.css';
+
+
 const NewTransaction = (props) => {
-	// const initialTransactionState = {
-	// 	transactionFields: {},
-	// };
-	const [transaction, setTransaction] = useState({});
 	const [newTransaction, setNewTransaction] = useState({});
 	const [transactionDetail, setTransactionDetail] = useState({});
-	// const [transactionFullDetail, setTransactionFullDetail] = useState({})
 	const [transactionTypes, setTransactionTypes] = useState({});
 	const [createdId, setCreatedId] = useState(null);
 	const [transactionInputs, setTransactionInputs] = useState([]);
@@ -46,7 +44,7 @@ const NewTransaction = (props) => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setCreatedId(data.id);
+				setCreatedId(Object.keys(data).map((key) => data[key].id)[0]);
 			})
 			.catch((error) => console.error);
 	};
@@ -57,8 +55,8 @@ const NewTransaction = (props) => {
 			([key, value]) => {
 				return (
 					<>
-						<label id='user-form-label' htmlFor={key}>
-							{toTitleCase(key)}
+						<label key={key} id='user-form-label' htmlFor={key}>
+							{props.toTitleCase(key)}
 						</label>
 						<input
 							required
@@ -91,25 +89,13 @@ const NewTransaction = (props) => {
 			return data;
 		});
 	};
-	console.log(newTransaction);
 
-	// convert snake_case data to Title Case for form
-	function toTitleCase(str) {
-		return str
-			.replace(/([a-z])([A-Z])/g, function (
-				allMatches,
-				firstMatch,
-				secondMatch
-			) {
-				return firstMatch + ' ' + secondMatch;
-			})
-			.toLowerCase()
-			.replace(/([ -_]|^)(.)/g, function (allMatches, firstMatch, secondMatch) {
-				return (firstMatch ? ' ' : '') + secondMatch.toUpperCase();
-			});
-	}
 	const transactionTypesOptions = Object.keys(transactionTypes).map((item) => {
-		return <option value={item}>{toTitleCase(item)}</option>;
+		return (
+			<option value={item} key={item}>
+				{props.toTitleCase(item)}
+			</option>
+		);
 	});
 
 	if (createdId) {
@@ -117,15 +103,17 @@ const NewTransaction = (props) => {
 	}
 
 	return (
-		<>
+		<div className='user-account-wrapper'>
+			<p className='user-detail-header'>Record a New Transaction</p>
 			<TransactionForm
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 				transactionTypes={transactionTypesOptions}
 				handleDropdownSelect={handleDropdownSelect}
 				transactionInputs={transactionInputs}
+				onClick={props.scrollUp}
 			/>
-		</>
+		</div>
 	);
 };
 

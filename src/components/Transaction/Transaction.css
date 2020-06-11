@@ -1,0 +1,54 @@
+table {
+	max-width: 75%;
+    margin: 0 auto;
+}
+
+.transaction-detail-headers {
+	font-size: 1.4rem;
+	font-weight: 500;
+	border-bottom: 2px solid rgb(51, 85, 116);
+	color: rgb(51, 85, 116);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#link-to-detail {
+	font-size: 1rem;
+	font-weight: 400;
+	font-style: italic;
+	color: rgba(57, 57, 255, 0.75);
+	transition: 0.3s;
+}
+
+#link-to-detail:hover {
+	color: rgba(66, 131, 242, 0.797);
+}
+
+@media (max-width: 800px) {
+	.transaction-detail-headers {
+		font-size: 0.8rem;
+		text-align: center;
+		display: grid;
+		justify-content: center;
+	}
+	#link-to-detail {
+		font-size: 0.8rem;
+		text-align: center;
+		display: grid;
+		justify-content: center;
+	}
+	#transaction-dates {
+		font-size: 0.6rem;
+		text-align: center;
+		display: grid;
+		justify-content: center;
+	}
+}
+
+@media (min-width: 1500px) {
+	#link-to-detail {
+		font-size: 1.2rem;
+	}
+	#transaction-dates {
+		font-size: 1.2rem;
+	}
+}

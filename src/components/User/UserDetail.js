@@ -109,17 +109,22 @@ const User = (props) => {
 						<span className='user-detail-header'>Control Panel</span>
 					</p>
 					<div className='user-detail-links'>
-						<Link to='/user/new-transaction'>{'\u00b7 New Transaction'}</Link>
-						<Link to='/user/all-transactions'>
+						<Link to='/user/new-transaction' onClick={props.scrollUp}>
+							{'\u00b7 New Transaction'}
+						</Link>
+						<Link to='/user/all-transactions' onClick={props.scrollUp}>
 							{'\u00b7 View Transaction History'}
 						</Link>
-						<Link to='/user/balance-statement'>
+						<Link to='/user/balance-statement' onClick={props.scrollUp}>
 							{'\u00b7 View Balance Statement'}
 						</Link>
 					</div>
 					<div className='user-detail-buttons'>
 						<div className='mt-5 link'>
-							<Link className='btn btn-info item' to='/user/edit' onClick={props.scrollUp}>
+							<Link
+								className='btn btn-info item'
+								to='/user/edit'
+								onClick={props.scrollUp}>
 								Update Account Information
 							</Link>
 						</div>
