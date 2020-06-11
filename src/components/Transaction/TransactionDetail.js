@@ -102,25 +102,25 @@ const TransactionDetail = (props) => {
 					</div>
 
 					<div className='user-detail-buttons'>
-						<div className='mt-5 link'>
-							<Link
-								className='btn btn-dark'
-								to={`/user/all-transactions`}
-								onClick={props.scrollUp}>
-								Return To All Transactions
-							</Link>
+						<div id='transaction-detail-buttons' className='text-center mt-4'>
 							<Link
 								className='btn btn-info item'
 								to={`/user/transaction/${transactionId}/edit`}
 								onClick={props.scrollUp}>
 								Update Transaction Information
 							</Link>
-						</div>
+							<Link
+								className='btn btn-dark'
+								to={`/user/all-transactions`}
+								onClick={props.scrollUp}>
+								Return To All Transactions
+							</Link>
 						<button
 							onClick={onDeleteTransaction}
 							className='btn btn-danger item'>
 							Delete Transaction
 						</button>
+						</div>
 					</div>
 				</div>
 			)}

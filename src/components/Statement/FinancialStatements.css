@@ -5,14 +5,22 @@
 	font-size: 2rem;
 	text-align: right;
 	border-top: 2px solid rgba(48, 92, 96, 0.3);
-
 	border-bottom: 2px solid rgba(48, 92, 96, 0.3);
 }
 
-.statement-section{
-	border-left: 2px solid black;
-
+.statement-section {
+	margin: 0 auto;
+	border-left: 4px solid black;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	max-width: 65vw;
 }
+
+.statement-section > * {
+	border-bottom: 2px solid black; 
+}
+
 
 .red-text {
 	color: red;

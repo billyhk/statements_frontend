@@ -1,8 +1,10 @@
 /* full page background */
 .user-account-wrapper {
 	background: rgb(220, 229, 237);
-	height: 100%;
-	padding-bottom: 25vh;
+	position: relative;
+	background-size: cover;
+	min-height: 100vh;
+	padding-bottom: 5vh;
 }
 /* user detail page */
 
@@ -91,12 +93,6 @@
 	justify-content: center;
 	padding-bottom: 10vh;
 	padding: 0 10vw;
-}
-
-@media (min-height: 880px) {
-	.user-account-wrapper {
-		height: 300vh;
-	}
 }
 
 @media (max-width: 750px) {

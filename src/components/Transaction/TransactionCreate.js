@@ -115,7 +115,7 @@ const NewTransaction = (props) => {
 
 
 	if (createdId) {
-		return <Redirect to={'/user/all-transactions'} />;
+		return <Redirect to={`/user/transaction/${createdId}`} />;
 	}
 
 	return (
