@@ -95,6 +95,13 @@
 
 @media (min-height: 880px) {
 	.user-account-wrapper {
-		height: 200vh;
+		height: 300vh;
 	}
+}
+
+@media (max-width: 750px) {
+	.user-detail-buttons {
+	padding: 0 20vw;
+}
+
 }

@@ -75,7 +75,7 @@ const TransactionsAll = (props) => {
 										</Link>
 									</td>
 									<td>
-										<span>
+										<span id='transaction-dates'>
 											{transaction.description}
 										</span>
 									</td>
