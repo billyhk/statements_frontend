@@ -37,7 +37,8 @@ class SignUp extends Component {
 	};
 
 	handleSubmit = (event) => {
-		event.preventDefault();
+		console.log(event)
+		// event.preventDefault();
 		const url = `${APIURL}/api/user/new`;
 		fetch(url, {
 			method: 'POST',

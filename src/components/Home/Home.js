@@ -7,7 +7,7 @@ const Home = () => {
         <h1>
         Statements
         </h1>
-        <h2>A stepping stone to financial freedom</h2>
+        <h2>A stepping stone to financial freedom.</h2>
         </div>
         </div>
     )
