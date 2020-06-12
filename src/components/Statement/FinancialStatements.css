@@ -2,9 +2,9 @@
 	display: grid;
 	padding: 12vh 0 0 0;
 	margin: 0 6vh 4vh 6vh;
-	font-size: 2rem;
+	font-size: 3rem;
 	text-align: right;
-	border-top: 2px solid rgba(48, 92, 96, 0.3);
+	/* border-top: 2px solid rgba(48, 92, 96, 0.3); */
 	border-bottom: 2px solid rgba(48, 92, 96, 0.3);
 }
 
@@ -15,12 +15,13 @@
 	align-items: center;
 	justify-content: center;
 	max-width: 65vw;
+	margin-top: 15vh;
 }
 
 .statement-section > * {
-	border-bottom: 2px solid black; 
+	border-bottom: 2px solid black;
+	max-width: 40vw;
 }
-
 
 .red-text {
 	color: red;
