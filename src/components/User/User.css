@@ -1,10 +1,10 @@
 /* full page background */
 .user-account-wrapper {
 	background: rgb(220, 229, 237);
-	position: relative;
+	/* position: relative; */
 	background-size: cover;
 	min-height: 100vh;
-	padding-bottom: 5vh;
+	padding-bottom: 25vh;
 }
 /* user detail page */
 
@@ -13,7 +13,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 8vh 0 0 0;
-	margin: 0 6vh 4vh 6vh;
+	margin: 0 6vh 2vh 6vh;
 	font-size: 2.5rem;
 	text-align: center;
 	border-bottom: 2px solid rgba(48, 92, 96, 0.3);
@@ -70,9 +70,8 @@
 	font-weight: 400;
 
 	position: relative;
-	bottom: 1.8vh;
-
-	padding: 1.2vh 10%;
+	top: 0vh;
+	/* padding: 1.2vh 10%; */
 	/* border-top: 2px solid rgba(0, 0, 0, 0.303); */
 	font-size: 1.5rem;
 }

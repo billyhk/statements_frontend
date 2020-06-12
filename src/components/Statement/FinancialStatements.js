@@ -6,6 +6,7 @@ import '../Transaction/Transaction.css';
 import '../User/User.css';
 import './FinancialStatements.css';
 
+
 const FinancialStatement = (props) => {
 	const [statement, setStatement] = useState({
 		income_statement: [],
@@ -22,12 +23,13 @@ const FinancialStatement = (props) => {
 
 	async function fetchMyApi() {
 		await fetch(`${APIURL}/api/statement`, {
-			method: 'GET',
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
 				Authorization: `Bearer ${props.userToken}`,
 			},
+			body: JSON.stringify({}),
 		})
 			.then((response) => response.json())
 			.then((data) => {
@@ -50,68 +52,66 @@ const FinancialStatement = (props) => {
 						<div className='statement-section'>
 							<p className='table-subheader'>Income Statement</p>
 							<tbody id='statement-table-body'>
-									{statement.income_statement.map((item) => {
-										return (
-											<tr
-												id={
-													item.line_item_order % 5 || item.line_item_order % 10
-														? 'plain-text'
-														: 'subtotal-text'
-												}>
-												<td>{props.toTitleCase(item.line_item)}</td>
-												<td
-													className={
-														item.amount < 0 ? 'red-text' : 'plain-text'
-													}>
-													${item.amount}
-												</td>
-											</tr>
-										);
-									})}
-								</tbody>
-					</div>
+								{statement.income_statement.map((item) => {
+									return (
+										<tr
+											id={
+												item.line_item_order % 5 || item.line_item_order % 10
+													? 'plain-text'
+													: 'subtotal-text'
+											}>
+											<td>{props.toTitleCase(item.line_item)}</td>
+											<td
+												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+												${item.amount === 0 ? '--' : item.amount}
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</div>
 						<div className='statement-section'>
 							<p className='table-subheader'>Cash Flow Statement</p>
 							<tbody id='statement-table-body'>
-									{statement.cash_flow_statement.map((item) => {
-										return (
-											<tr id={item.line_item_order % 5 || item.line_item_order % 10 ? 'plain-text' : 'subtotal-text'}>
-												<td>{props.toTitleCase(item.line_item)}</td>
-												<td
-													className={
-														item.amount < 0 ? 'red-text' : 'plain-text'
-													}>
-													${item.amount}
-												</td>
-											</tr>
-										);
-									})}
-								</tbody>
-					</div>
+								{statement.cash_flow_statement.map((item) => {
+									return (
+										<tr
+											id={
+												item.line_item_order % 5 || item.line_item_order % 10
+													? 'plain-text'
+													: 'subtotal-text'
+											}>
+											<td>{props.toTitleCase(item.line_item)}</td>
+											<td
+												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+												${item.amount === 0 ? '--' : item.amount}
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</div>
 						<div className='statement-section'>
 							<p className='table-subheader'>Balance Sheet</p>
-
-								<tbody id='statement-table-body'>
-									{statement.balance_sheet.map((item) => {
-										return (
-											<tr
-												id={
-													item.line_item_order % 5 || item.line_item_order % 10
-														? 'plain-text'
-														: 'subtotal-text'
-												}>
-												<td>{props.toTitleCase(item.line_item)}</td>
-												<td
-													className={
-														item.amount < 0 ? 'red-text' : 'plain-text'
-													}>
-													${item.amount}
-												</td>
-											</tr>
-										);
-									})}
-								</tbody>
-					</div>
+							<tbody id='statement-table-body'>
+								{statement.balance_sheet.map((item) => {
+									return (
+										<tr
+											id={
+												item.line_item_order % 5 || item.line_item_order % 10
+													? 'plain-text'
+													: 'subtotal-text'
+											}>
+											<td>{props.toTitleCase(item.line_item)}</td>
+											<td
+												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+												${item.amount === 0 ? '--' : item.amount}
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</div>
 					</Table>
 				</div>
 			)}

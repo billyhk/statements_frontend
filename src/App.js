@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 //misc. components
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
+import Footer from './components/Footer/Footer'
 
 //signin/signup
 import SignIn from './components/Password/SignIn';
@@ -158,6 +159,9 @@ const App = () => {
 					}}
 				/>
 			</main>
+			<footer>
+				<Footer/>
+			</footer>
 		</>
 	);
 };
