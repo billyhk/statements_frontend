@@ -3,15 +3,18 @@ table {
 	margin: 0 auto;
 }
 
-.transaction-detail-headers {
-	font-size: 2.45vmin;
+#transaction-detail-headers {
+	/* font-size: 2.45vmin;
 	font-weight: 500;
 	text-align: center;
 	display: grid;
 	justify-content: center;
+	align-items: center;
 	border-bottom: 2px solid rgb(51, 85, 116);
 	color: rgb(51, 85, 116);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif; */
+
+	background:rgb(220, 229, 237);
 }
 
 #link-to-detail {
@@ -37,6 +40,7 @@ table {
 
 #form-transaction-type {
 	margin-bottom: 4vh;
+	
 }
 
 #transaction-dates {
