@@ -7,44 +7,9 @@ import '../User/User.css';
 import './FinancialStatements.css';
 
 
-const FinancialStatement = (props) => {
-	const [statement, setStatement] = useState({
-		income_statement: [],
-		balance_sheet: [],
-		cash_flow_statement: [],
-	});
-	const [error, setError] = useState(false);
-
-	useEffect(() => {
-		props.scrollUp();
-		fetchMyApi();
-		// eslint-disable-next-line
-	}, []);
-
-	async function fetchMyApi() {
-		await fetch(`${APIURL}/api/statement`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
-			},
-			body: JSON.stringify({}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setStatement(data);
-			})
-			.catch(() => {
-				setError(true);
-			});
-	}
-
-	return (
-		<div className='user-account-wrapper'>
-			<p className='user-detail-header'>Financial Statements</p>
-
-			{!statement ? (
+const FinancialStatement = (props) => (
+	<>
+			{!props.statement ? (
 				<div className='home-title'>Loading...</div>
 			) : (
 				<div>
@@ -52,7 +17,7 @@ const FinancialStatement = (props) => {
 						<div className='statement-section'>
 							<p className='table-subheader'>Income Statement</p>
 							<tbody id='statement-table-body'>
-								{statement.income_statement.map((item) => {
+								{props.statement.income_statement.map((item) => {
 									return (
 										<tr
 											id={
@@ -73,7 +38,7 @@ const FinancialStatement = (props) => {
 						<div className='statement-section'>
 							<p className='table-subheader'>Cash Flow Statement</p>
 							<tbody id='statement-table-body'>
-								{statement.cash_flow_statement.map((item) => {
+								{props.statement.cash_flow_statement.map((item) => {
 									return (
 										<tr
 											id={
@@ -94,7 +59,7 @@ const FinancialStatement = (props) => {
 						<div className='statement-section'>
 							<p className='table-subheader'>Balance Sheet</p>
 							<tbody id='statement-table-body'>
-								{statement.balance_sheet.map((item) => {
+								{props.statement.balance_sheet.map((item) => {
 									return (
 										<tr
 											id={
@@ -115,8 +80,7 @@ const FinancialStatement = (props) => {
 					</Table>
 				</div>
 			)}
-		</div>
+			</>
 	);
-};
 
 export default FinancialStatement;

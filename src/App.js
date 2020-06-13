@@ -21,7 +21,7 @@ import TransactionDetail from './components/Transaction/TransactionDetail';
 import TransactionUpdate from './components/Transaction/TransactionUpdate';
 
 //financial statements
-import FinancialStatements from './components/Statement/FinancialStatements' 
+import FinancialStatementSummary from './components/Statement/FinancialStatementSummary' 
 
 
 const App = () => {
@@ -145,10 +145,10 @@ const App = () => {
 				/>
 				<Route
 					exact
-					path='/user/financial-statements'
+					path='/user/financial-statements-summary'
 					render={(routerProps) => {
 						return (
-							<FinancialStatements
+							<FinancialStatementSummary
 								match={routerProps.match}
 								userToken={token}
 								toTitleCase={toTitleCase}

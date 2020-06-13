@@ -115,7 +115,7 @@ const User = (props) => {
 						<Link to='/user/all-transactions' onClick={props.scrollUp}>
 							{'\u00b7 Transaction History'}
 						</Link>
-						<Link to='/user/financial-statements' onClick={props.scrollUp}>
+						<Link to='/user/financial-statements-summary' onClick={props.scrollUp}>
 							{'\u00b7 Generate Financial Statements'}
 						</Link>
 					</div>

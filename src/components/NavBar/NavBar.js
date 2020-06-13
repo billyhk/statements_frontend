@@ -58,7 +58,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 									<i className='fas fa-wallet'></i>{' '}
 									<span className='toggle-hidden-nav'>All Transactions</span>
 								</Link>
-								<Link to='/user/financial-statements'>
+								<Link to='/user/financial-statements-summary'>
 									<i className='fas fa-receipt'></i>{' '}
 									<span className='toggle-hidden-nav'>Financial Statements</span>
 								</Link>

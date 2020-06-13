@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { APIURL } from '../../config';
 import { Link, Redirect } from 'react-router-dom';
+import FinancialStatements from '../Statement/FinancialStatements';
 
 import './Transaction.css';
 import '../User/User.css';
@@ -9,7 +10,36 @@ const TransactionDetail = (props) => {
 	const [transaction, setTransaction] = useState({ temp: {} });
 	const [deleted, setDeleted] = useState(false);
 	const [error, setError] = useState(false);
-	// const [transactinoType, setTransactionType] = useState('')
+	const [statement, setStatement] = useState({
+		income_statement: [],
+		balance_sheet: [],
+		cash_flow_statement: [],
+	});
+
+	useEffect(() => {
+		props.scrollUp();
+		fetchMyApi();
+		// eslint-disable-next-line
+	}, []);
+
+	async function fetchMyApi() {
+		await fetch(`${APIURL}/api/statement`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${props.userToken}`,
+			},
+			body: JSON.stringify({ transaction_list: [transactionId] }),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setStatement(data);
+			})
+			.catch(() => {
+				setError(true);
+			});
+	}
 
 	const transactionId = props.match.params.id;
 
@@ -100,6 +130,14 @@ const TransactionDetail = (props) => {
 						</p>
 						{details}
 					</div>
+					<p className='user-detail-header'>
+						Financial Impact of This Transaction
+					</p>
+					<FinancialStatements
+						statement={statement}
+						scrollUp={props.ScrollUp}
+						toTitleCase={props.toTitleCase}
+					/>
 
 					<div className='user-detail-buttons'>
 						<div id='transaction-detail-buttons' className='text-center mt-4'>
@@ -115,11 +153,11 @@ const TransactionDetail = (props) => {
 								onClick={props.scrollUp}>
 								Return To All Transactions
 							</Link>
-						<button
-							onClick={onDeleteTransaction}
-							className='btn btn-danger item'>
-							Delete Transaction
-						</button>
+							<button
+								onClick={onDeleteTransaction}
+								className='btn btn-danger item'>
+								Delete Transaction
+							</button>
 						</div>
 					</div>
 				</div>
