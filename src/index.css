@@ -3,13 +3,14 @@ body {
 		no-repeat center center;
 	background-size: cover;
 	-webkit-background-size: cover;
-	height: 120vh;
+	min-height: 120vh;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	margin: 0 auto;
 	position: relative;
-	padding-bottom: 2.5rem;
+	/* padding-bottom: 20vh; */
 }
+
 
 form {
 	background-color: rgba(243, 244, 245, 0.9);
@@ -78,8 +79,17 @@ form {
 	color: rgba(255, 255, 255, 0.75);
 }
 
+.push {
+	/* margin-bottom: -10vh; */
+
+	/* min-height: 10vh; */
+	/* position: absolute;
+	bottom: 0; */
+}
+
 footer {
-	background:rgb(170, 182, 213);
+	/* margin-bottom: -10vh; */
+	background: rgb(170, 182, 213);
 	position: absolute;
 	bottom: 0;
 	width: 100%;
