@@ -28,11 +28,10 @@ td {
 	border-right: 2px solid black; */
 }
 
-#statement-table-body >* {
+#statement-table-body > * {
 	border-left: 2px solid black;
 	border-right: 1px solid black;
 }
-
 
 #subtotal-text {
 	background: white;
@@ -48,4 +47,17 @@ td {
 #plain-text {
 	/* background: white; */
 	/* border-right: 2px solid black; */
+}
+
+@media (max-width: 800px) {
+	.table-subheader {
+		font-size: 1rem;
+		font-weight: 500;
+	}
+	#transaction-detail-buttons > * {
+		font-size: 0.7rem;
+		margin: 1vmin auto;
+		padding: 1vmin 0;
+		min-width: 100%;
+	}
 }

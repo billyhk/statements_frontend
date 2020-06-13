@@ -65,7 +65,7 @@ class SignIn extends Component {
 								Your username
 							</label>
 							<input
-							required
+								required
 								type='username'
 								id='username'
 								className='form-control'
@@ -81,7 +81,7 @@ class SignIn extends Component {
 								Your password
 							</label>
 							<input
-							required
+								required
 								type='password'
 								id='password'
 								className='form-control'

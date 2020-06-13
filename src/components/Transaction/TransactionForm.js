@@ -14,11 +14,11 @@ const TransactionForm = (props) => {
 				{props.formSelectTag}
 				{props.transactionInputs}
 				<div className='text-center mt-4'>
-					<MDBBtn color='indigo' className='button-text' type='submit'>
+					<button className='btn btn-blue' type='submit'>
 						Submit
-					</MDBBtn>
-					<Link to='/user/all-transactions' className='btn btn-link'>
-						<MDBBtn color='black'>Cancel and Return to All Transactions</MDBBtn>
+					</button>
+					<Link to='/user/all-transactions' className='btn btn-dark'>
+						Cancel and Go to All Transactions
 					</Link>
 				</div>
 			</form>

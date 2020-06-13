@@ -27,9 +27,14 @@
 	line-height: 4vh;
 }
 
+
 #user-update-input {
-	line-height: 3vh;
+	line-height: 2.5vmin;
 	text-align: center;
+	font-size: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #user-form-label {
@@ -100,5 +105,13 @@
 @media (max-width: 750px) {
 	.user-detail-buttons {
 		padding: 0 20vw;
+	}
+	#user-update-input {
+		line-height: 5vmin;
+		font-size: .6rem;
+		margin-left: 2vmin;
+	}
+	.user-detail-links {
+		text-align: center;
 	}
 }

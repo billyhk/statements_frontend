@@ -18,7 +18,7 @@ main {
 form {
 	background-color: rgba(243, 244, 245, 0.9);
 	color: #6a89f0;
-	padding: 2.5rem 2rem 0 2rem;
+	padding: 2.5rem 2rem;
 	text-align: left;
 	display: grid;
 	min-width: 60vmin;
@@ -28,8 +28,9 @@ form {
 }
 
 form > * {
-	max-width: 80%;
-	margin: 0 auto;
+	/* max-width: 80%; */
+	display: grid;
+	/* margin: 0 auto; */
 }
 
 .header-nav {

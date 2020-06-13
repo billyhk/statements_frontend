@@ -153,6 +153,13 @@ const TransactionDetail = (props) => {
 								onClick={props.scrollUp}>
 								Return To All Transactions
 							</Link>
+							<Link
+								className='btn btn-light'
+								to={`/user/transaction/financial-statements-summary`}
+								onClick={props.scrollUp}>
+								Go To Financial Statements Summary
+							</Link>
+
 							<button
 								onClick={onDeleteTransaction}
 								className='btn btn-danger item'>
