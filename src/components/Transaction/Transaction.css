@@ -3,6 +3,18 @@ table {
 	margin: 0 auto;
 }
 
+#form-transaction-type {
+	/* margin-bottom: 4vh;
+	line-height: 2vmin;
+	
+	 */
+	margin: 4vh 15vw;
+	/* text-align: center; */
+	max-width: 50vw;
+	display: flex;
+}
+
+
 #transaction-detail-headers {
 	/* font-size: 2.45vmin;
 	font-weight: 500;
@@ -14,7 +26,7 @@ table {
 	color: rgb(51, 85, 116);
 	font-family: Arial, Helvetica, sans-serif; */
 
-	background:rgb(220, 229, 237);
+	background: rgb(220, 229, 237);
 }
 
 #link-to-detail {
@@ -38,11 +50,6 @@ table {
 	text-align: center;
 }
 
-#form-transaction-type {
-	margin-bottom: 4vh;
-	
-}
-
 #transaction-dates {
 	font-size: 0.6rem;
 	text-align: center;
@@ -50,7 +57,7 @@ table {
 	justify-content: center;
 }
 
-#transaction-detail-buttons > *{
+#transaction-detail-buttons > * {
 	width: 40vw;
 }
 

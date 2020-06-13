@@ -5,7 +5,6 @@ import TransactionForm from './TransactionForm';
 
 import '../User/User.css';
 
-
 const NewTransaction = (props) => {
 	const [newTransaction, setNewTransaction] = useState({});
 	const [transactionDetail, setTransactionDetail] = useState({});
@@ -60,6 +59,7 @@ const NewTransaction = (props) => {
 						</label>
 						<input
 							required
+							id='user-update-input'
 							key={key + event.target.value}
 							type={value}
 							name={key}
@@ -112,7 +112,6 @@ const NewTransaction = (props) => {
 			{transactionTypesOptions}
 		</select>
 	);
-
 
 	if (createdId) {
 		return <Redirect to={`/user/transaction/${createdId}`} />;

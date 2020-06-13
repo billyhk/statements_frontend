@@ -11,6 +11,9 @@ body {
 	/* padding-bottom: 20vh; */
 }
 
+main {
+	padding-bottom: 20vh;
+}
 
 form {
 	background-color: rgba(243, 244, 245, 0.9);
@@ -21,7 +24,12 @@ form {
 	min-width: 60vmin;
 	padding-bottom: 8%;
 	border-radius: 0.2cm;
-	margin: 10vmin;
+	margin: 15vh 10vw;
+}
+
+form > * {
+	max-width: 80%;
+	margin: 0 auto;
 }
 
 .header-nav {
