@@ -155,7 +155,7 @@ const TransactionDetail = (props) => {
 							</Link>
 							<Link
 								className='btn btn-light'
-								to={`/user/transaction/financial-statements-summary`}
+								to={`/user/financial-statements-summary`}
 								onClick={props.scrollUp}>
 								Go To Financial Statements Summary
 							</Link>
