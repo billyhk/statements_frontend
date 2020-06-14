@@ -1,10 +1,12 @@
 /* full page background */
 .user-account-wrapper {
 	background: rgb(220, 229, 237);
-	/* position: relative; */
 	background-size: cover;
+	-webkit-background-size: cover;
 	min-height: 100vh;
-	padding-bottom: 25vh;
+	
+	/* position: relative; */
+	/* padding-bottom: 25vh; */
 }
 /* user detail page */
 
@@ -26,7 +28,6 @@
 	bottom: 10vh;
 	line-height: 4vh;
 }
-
 
 #user-update-input {
 	line-height: 2.5vmin;
@@ -108,7 +109,7 @@
 	}
 	#user-update-input {
 		line-height: 5vmin;
-		font-size: .6rem;
+		font-size: 0.6rem;
 		margin-left: 2vmin;
 	}
 	.user-detail-links {
