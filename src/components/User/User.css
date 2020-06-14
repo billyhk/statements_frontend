@@ -6,7 +6,7 @@
 	min-height: 100vh;
 
 	/* position: relative; */
-	/* padding-bottom: 25vh; */
+	padding-bottom: 25vh;
 }
 /* user detail page */
 
@@ -116,8 +116,8 @@
 	}
 }
 
-@media (max-height: 700px) {
+@media (max-height: 950px) {
 	.user-account-wrapper {
-		padding-bottom: 80vh;
+		margin-bottom: -35vh;
 	}
 }
