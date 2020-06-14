@@ -4,7 +4,7 @@
 	background-size: cover;
 	-webkit-background-size: cover;
 	min-height: 100vh;
-	
+
 	/* position: relative; */
 	/* padding-bottom: 25vh; */
 }
@@ -99,8 +99,7 @@
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	margin: 10vh 0;
-	padding: 0 10vw;
+	padding: 5vh 10vw;
 }
 
 @media (max-width: 750px) {
@@ -114,5 +113,11 @@
 	}
 	.user-detail-links {
 		text-align: center;
+	}
+}
+
+@media (max-height: 700px) {
+	.user-account-wrapper {
+		padding-bottom: 80vh;
 	}
 }
