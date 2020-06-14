@@ -3,7 +3,7 @@ body {
 		no-repeat center center;
 	background-size: cover;
 	-webkit-background-size: cover;
-	min-height: 120vh;
+	min-height: 100vh;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	margin: 0 auto;
@@ -129,3 +129,13 @@ footer {
 		display: inline;
 	}
 }
+
+@media (max-height: 700px) {
+	main {
+		padding-bottom: 80vh;
+	}
+	body {
+	background: url(https://cdn.photographylife.com/wp-content/uploads/2016/04/Death-Valley-NP-4.jpg)
+		no-repeat 70% 100%;
+	}
+} 
