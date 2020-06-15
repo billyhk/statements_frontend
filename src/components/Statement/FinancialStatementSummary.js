@@ -20,6 +20,8 @@ const FinancialStatementSummary = (props) => {
 		// eslint-disable-next-line
 	}, []);
 
+	
+
 	async function fetchMyApi() {
 		await fetch(`${APIURL}/api/statement`, {
 			method: 'POST',

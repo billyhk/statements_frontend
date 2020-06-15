@@ -20,15 +20,11 @@ const FinancialStatement = (props) => (
 								{props.statement.income_statement.map((item) => {
 									return (
 										<tr
-											id={
-												item.line_item_order % 5 || item.line_item_order % 10
-													? 'plain-text'
-													: 'subtotal-text'
-											}>
-											<td>{props.toTitleCase(item.line_item)}</td>
+											id={item.line_format}>
+											<td>{item.line_format === 'line-item' ? null : (<span id='sub-or-grand'>({props.toTitleCase(item.line_format)}) </span>)}{props.toTitleCase(item.line_item)}</td>
 											<td
 												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
-												${item.amount === 0 ? '--' : item.amount}
+												{item.currency_format}{item.amount === 0 ? '--' : item.amount}
 											</td>
 										</tr>
 									);
@@ -40,16 +36,19 @@ const FinancialStatement = (props) => (
 							<tbody id='statement-table-body'>
 								{props.statement.cash_flow_statement.map((item) => {
 									return (
-										<tr
-											id={
-												item.line_item_order % 5 || item.line_item_order % 10
-													? 'plain-text'
-													: 'subtotal-text'
-											}>
-											<td>{props.toTitleCase(item.line_item)}</td>
+										<tr id={item.line_format}>
+											<td>
+												{item.line_format === 'line-item' ? null : (
+													<span id='sub-or-grand'>
+														({props.toTitleCase(item.line_format)}){' '}
+													</span>
+												)}
+												{props.toTitleCase(item.line_item)}
+											</td>
 											<td
 												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
-												${item.amount === 0 ? '--' : item.amount}
+												{item.currency_format}
+												{item.amount === 0 ? '--' : item.amount}
 											</td>
 										</tr>
 									);
@@ -61,16 +60,19 @@ const FinancialStatement = (props) => (
 							<tbody id='statement-table-body'>
 								{props.statement.balance_sheet.map((item) => {
 									return (
-										<tr
-											id={
-												item.line_item_order % 5 || item.line_item_order % 10
-													? 'plain-text'
-													: 'subtotal-text'
-											}>
-											<td>{props.toTitleCase(item.line_item)}</td>
+										<tr id={item.line_format}>
+											<td>
+												{item.line_format === 'line-item' ? null : (
+													<span id='sub-or-grand'>
+														({props.toTitleCase(item.line_format)}){' '}
+													</span>
+												)}
+												{props.toTitleCase(item.line_item)}
+											</td>
 											<td
 												className={item.amount < 0 ? 'red-text' : 'plain-text'}>
-												${item.amount === 0 ? '--' : item.amount}
+												{item.currency_format}
+												{item.amount === 0 ? '--' : item.amount}
 											</td>
 										</tr>
 									);

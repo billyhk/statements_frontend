@@ -18,10 +18,10 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-	{ id: 'id', label: 'ID', minWidth: 170 },
-	{ id: 'transaction_type', label: 'Transaction Type', minWidth: 100 },
+	{ id: 'accounting_date', label: 'Accounting Date', minWidth: 150 },
+	{ id: 'id', label: 'ID', maxWidth: 80 },
+	{ id: 'transaction_type', label: 'Transaction Type', minWidth: 150 },
 	{ id: 'description', label: 'Description', minWidth: 100 },
-	{ id: 'accounting_date', label: 'Accounting Date', minWidth: 100 },
 ];
 
 const useStyles = makeStyles({
