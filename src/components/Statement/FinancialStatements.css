@@ -3,15 +3,18 @@
 	padding: 5vh 0;
 	/* margin: 10vh 6vw 4vh 6vw; */
 	font-size: 2rem;
-	text-align: right;
+	text-align: center;
 	/* position: relative; */
 	/* left: 15vw; */
 	/* border-top: 2px solid rgba(48, 92, 96, 0.3); */
 	border-bottom: 2px solid rgba(48, 92, 96, 0.3);
-	min-width: 65vw;
+	font-weight: 500;
+
+	/* min-width: 65vw; */
 }
 
 .statement-section {
+	margin-left: 20%;
 	line-height: 0;
 	max-width: 45vw;
 	min-width: 45vw;
@@ -22,6 +25,11 @@
 
 tr:hover {
 	background: lightgray;
+}
+
+.q-selector {
+	margin-left: 30%;
+	width: 40vw;
 }
 
 #statement-table-body {
@@ -57,8 +65,8 @@ tr:hover {
 
 #grand-total {
 	background: white;
-	border-top: 5px dotted black;
-	padding-bottom: 4vh;
+	border-top: 4px dotted black;
+	padding-bottom: 3vh;
 	display: flex;
 	justify-content: space-between;
 }
@@ -73,8 +81,7 @@ tr:hover {
 
 @media (max-width: 800px) {
 	.table-subheader {
-		font-size: 1rem;
-		font-weight: 500;
+		font-size: 1.2rem;
 	}
 	#transaction-detail-buttons > * {
 		font-size: 0.7rem;

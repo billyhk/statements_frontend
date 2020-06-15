@@ -13,14 +13,13 @@ const FinancialStatementSummary = (props) => {
 		cash_flow_statement: [],
 	});
 	const [error, setError] = useState(false);
+	const [periods, setPeriods] = useState([]);
 
 	useEffect(() => {
 		props.scrollUp();
 		fetchMyApi();
 		// eslint-disable-next-line
 	}, []);
-
-	
 
 	async function fetchMyApi() {
 		await fetch(`${APIURL}/api/statement`, {
@@ -41,10 +40,65 @@ const FinancialStatementSummary = (props) => {
 			});
 	}
 
+	useEffect(() => {
+		fetch(`${APIURL}/api/statement/periods`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${props.userToken}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setPeriods(data);
+			})
+			.catch(console.error);
+		// eslint-disable-next-line
+	}, []);
+
+	function handleChange(event) {
+		let range = JSON.parse(event.target.value);
+		console.log(range, event.target.value)
+		fetch(`${APIURL}/api/statement`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${props.userToken}`,
+			},
+			body: JSON.stringify(range),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setStatement(data);
+			})
+			.catch(() => {
+				setError(true);
+			});
+	}
+
+	let options = periods.map((period) => {
+		return (
+			<option
+			value={JSON.stringify({begin_date: period.begin_date,
+				end_date: period.end_date,})}
+				selected = {periods[periods.length - 1]}
+				>
+				{period.period}
+			</option>
+		);
+	});
+
 	return (
 		<div className='user-account-wrapper'>
 			<p className='user-detail-header'>Financial Statements</p>
-			<FinancialStatements statement={statement} scrollUp={props.ScrollUp} toTitleCase={props.toTitleCase}/>
+			<select className='q-selector' onChange={(e) => handleChange(e)}>{options}</select>
+			<FinancialStatements
+				statement={statement}
+				scrollUp={props.ScrollUp}
+				toTitleCase={props.toTitleCase}
+			/>
 		</div>
 	);
 };
