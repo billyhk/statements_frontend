@@ -20,6 +20,11 @@ tr:hover {
 	background: rgba(218, 218, 243, 0.877);
 }
 
+.financial-statements-table {
+	max-width: 60vw;
+	min-width: 45vw;
+}
+
 .q-selector {
 	margin-left: 30%;
 	width: 40vw;
@@ -27,7 +32,7 @@ tr:hover {
 
 #statement-table-body {
 	display: grid;
-	min-width: 60vw;
+	/* min-width: 60vw; */
 }
 
 #statement-table-body > * {
@@ -37,7 +42,7 @@ tr:hover {
 
 .overlay {
 	position: absolute;
-	left: 80vw;
+	left: 71.5vw;
 	/* left: 25vw; */
 	border: 1px solid #000;
 

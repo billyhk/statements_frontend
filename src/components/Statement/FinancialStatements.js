@@ -46,9 +46,6 @@ const FinancialStatement = (props) => {
 												}
 											}}>
 											<div
-												// onMouseLeave={(e) => {
-												// 	e.target.className = 'hidden';
-												// }}
 												className='overlay hidden'>
 												{item.tr_list.map((tr) => {
 													return (
@@ -84,7 +81,32 @@ const FinancialStatement = (props) => {
 											)}
 											{props.toTitleCase(item.line_item)}
 										</td>
-										<td className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+										<td
+											className={item.amount < 0 ? 'red-text' : 'plain-text'}
+											onMouseEnter={(e) => {
+												if (e.target.firstElementChild) {
+													e.target.firstElementChild.className = 'overlay';
+												}
+											}}
+											onMouseLeave={(e) => {
+												if (e.target.firstElementChild) {
+													e.target.firstElementChild.className =
+														'overlay hidden';
+												}
+											}}>
+											<div className='overlay hidden'>
+												{item.tr_list.map((tr) => {
+													return (
+														<>
+															<p>
+																<Link to={`/user/transaction/${tr.id}`}>
+																	{`${tr.id}`}&nbsp;
+																</Link>
+															</p>
+														</>
+													);
+												})}
+											</div>
 											{item.currency_format}
 											{item.amount === 0 ? '--' : item.amount}
 										</td>
@@ -107,7 +129,32 @@ const FinancialStatement = (props) => {
 											)}
 											{props.toTitleCase(item.line_item)}
 										</td>
-										<td className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+										<td
+											className={item.amount < 0 ? 'red-text' : 'plain-text'}
+											onMouseEnter={(e) => {
+												if (e.target.firstElementChild) {
+													e.target.firstElementChild.className = 'overlay';
+												}
+											}}
+											onMouseLeave={(e) => {
+												if (e.target.firstElementChild) {
+													e.target.firstElementChild.className =
+														'overlay hidden';
+												}
+											}}>
+											<div className='overlay hidden'>
+												{item.tr_list.map((tr) => {
+													return (
+														<>
+															<p>
+																<Link to={`/user/transaction/${tr.id}`}>
+																	{`${tr.id}`}&nbsp;
+																</Link>
+															</p>
+														</>
+													);
+												})}
+											</div>
 											{item.currency_format}
 											{item.amount === 0 ? '--' : item.amount}
 										</td>
