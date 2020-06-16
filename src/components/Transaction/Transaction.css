@@ -4,18 +4,28 @@ table {
 }
 
 #form-transaction-type {
-	/* margin-bottom: 4vh;
-	line-height: 2vmin;
-	
-	 */
-	margin: 4vh 0;
-	/* text-align: center; */
-	max-width: 50vw;
+	/* margin: 4vw; */
+	/* max-width: 60vw; */
 	display: flex;
 }
 
 #transaction-detail-headers {
 	background: rgb(220, 229, 237);
+}
+
+.transaction-form-container {
+	background: rgba(179, 185, 209, 0.5);
+	border-radius: 20ch;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	margin: 0 0 0 15%;
+	max-width: 65vw;
+}
+
+.transaction-form-container > *{
+	max-width: 45vw;
+	border-radius: 10px;
 }
 
 #link-to-detail {
@@ -67,9 +77,6 @@ table {
 		font-size: 1rem;
 		font-weight: 500;
 	}
-	/* #transaction-form-buttons {
-		font-size: .1rem;
-	} */
 }
 
 @media (min-width: 1000px) {

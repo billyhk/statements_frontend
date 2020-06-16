@@ -7,7 +7,7 @@ import '../User/User.css';
 const TransactionForm = (props) => {
 	return (
 		<>
-			<form onSubmit={props.handleSubmit}>
+			<form className='transaction-form-container' onSubmit={props.handleSubmit}>
 				<label className='make-center' id='user-form-label' htmlFor='Transaction Type'>
 					Transaction Type
 				</label>
