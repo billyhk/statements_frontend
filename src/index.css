@@ -130,12 +130,12 @@ footer {
 	}
 }
 
-@media (max-height: 950px) {
+@media (max-height: 1250px) {
 	main {
 		padding-bottom: 50vh;
 	}
-	body {
+	/* body {
 		background: url(https://cdn.photographylife.com/wp-content/uploads/2016/04/Death-Valley-NP-4.jpg)
 			no-repeat 70% 100%;
-	}
+	} */
 }

@@ -116,7 +116,7 @@
 	}
 }
 
-@media (max-height: 950px) {
+@media (max-height: 1250px) {
 	.user-account-wrapper {
 		margin-bottom: -35vh;
 	}
