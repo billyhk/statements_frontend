@@ -94,8 +94,8 @@ class SignIn extends Component {
 								<MDBBtn color='indigo' onClick={this.signIn}>
 									Login
 								</MDBBtn>
-								<Link to='/signup' className='button-text'>
-									<MDBBtn color='indigo'>Sign Up</MDBBtn>
+								<Link to='/signup' >
+									Don't have an account? Click here to sign up.
 								</Link>
 							</div>
 						</form>

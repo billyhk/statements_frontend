@@ -155,6 +155,9 @@ class SignUp extends Component {
 								<MDBBtn color='indigo' type='submit'>
 									Submit
 								</MDBBtn>
+								<Link to='/signin'>
+									Already have an account? Click here to sign in
+								</Link>
 
 								{this.state.submit && (
 									<p className={this.state.valid ? 'valid' : 'invalid'}>
