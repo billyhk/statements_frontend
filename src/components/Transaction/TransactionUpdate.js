@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { APIURL } from '../../config';
 import TransactionForm from './TransactionForm';
 
@@ -148,15 +148,24 @@ const TransactionUpdate = (props) => {
 			<p className='user-detail-header'>
 				{`Update Transaction #${transactionId}`}
 			</p>
-			<TransactionForm
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
-				transactionTypes={transactionTypesOptions}
-				transactionInputs={transactionInputs}
-				inputValues={inputValues}
-				onClick={props.scrollUp}
-				formSelectTag={dropdownValue}
-			/>
+			<form
+				className='transaction-form-container'
+				onSubmit={handleSubmit}>
+				<TransactionForm
+					handleChange={handleChange}
+					handleSubmit={handleSubmit}
+					transactionTypes={transactionTypesOptions}
+					transactionInputs={transactionInputs}
+					inputValues={inputValues}
+					onClick={props.scrollUp}
+					formSelectTag={dropdownValue}
+				/>
+				<Link
+					to={`/user/transaction/${transactionId}`}
+					className='btn btn-dark'>
+					Cancel and Go Back
+				</Link>
+			</form>
 		</div>
 	);
 };
