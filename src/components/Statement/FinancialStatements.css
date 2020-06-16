@@ -37,12 +37,12 @@ tr:hover {
 
 .overlay {
 	position: absolute;
+	left: 80vw;
 	/* left: 25vw; */
 	border: 1px solid #000;
 
 	min-width: 20vw;
 	padding: 2vmin;
-
 
 	display: flex;
 	align-items: center;

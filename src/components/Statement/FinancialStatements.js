@@ -39,24 +39,28 @@ const FinancialStatement = (props) => {
 													e.target.firstElementChild.className = 'overlay';
 												}
 											}}
-											// onMouseLeave={(e) => {
-											// 	e.target.firstElementChild.className = 'hidden';
-											// }}
-										>
+											onMouseLeave={(e) => {
+												if (e.target.firstElementChild) {
+													e.target.firstElementChild.className =
+														'overlay hidden';
+												}
+											}}>
 											<div
-												onMouseLeave={(e) => {
-													e.target.className = 'hidden';
-												}}
+												// onMouseLeave={(e) => {
+												// 	e.target.className = 'hidden';
+												// }}
 												className='overlay hidden'>
-													{item.tr_list.map((tr) => {return <p>
-														{tr.id}{' '}
-													</p>})}
-												{/* {JSON.stringify(item.tr_list) === [] ? null : (
-													<Link
-														to={`transaction/${item.tr_list}`}>
-														{props.toTitleCase(JSON.stringify(item.tr_list))}
-													</Link>
-												)} */}
+												{item.tr_list.map((tr) => {
+													return (
+														<>
+															<p>
+																<Link to={`/user/transaction/${tr.id}`}>
+																	{`${tr.id}`}&nbsp;
+																</Link>
+															</p>
+														</>
+													);
+												})}
 											</div>
 											{item.currency_format}
 											{item.amount === 0 ? '--' : item.amount}
