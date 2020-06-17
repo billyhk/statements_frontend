@@ -69,7 +69,7 @@ class SignUp extends Component {
 			<MDBContainer>
 				<MDBRow>
 					<MDBCol md='12'>
-						<form onSubmit={this.checkPassword}>
+						<form onSubmit={this.checkPassword} id='sign-up-form'>
 							<p className='h4 text-center mb-4'>Sign up</p>
 							<label htmlFor='firstname' className='sign-in-text'>
 								First Name
