@@ -21,7 +21,7 @@ const TransactionUpdate = (props) => {
 		fetch(url, {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		})
 			.then((response) => response.json())
@@ -39,7 +39,7 @@ const TransactionUpdate = (props) => {
 		fetch(url, {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		})
 			.then((response) => response.json())
@@ -52,31 +52,30 @@ const TransactionUpdate = (props) => {
 					})[0]
 				).map(([key, value]) => {
 					let type;
-					if(key != 'id') {
+					if (key != 'id') {
 						if (key === 'accounting_date' || key === 'transaction_date') {
-							type = 'date'
+							type = 'date';
 						} else if (key === 'description') {
-							type = 'text'
+							type = 'text';
 						} else {
-							type = 'number'
+							type = 'number';
 						}
 						return (
-						<>
-							<label key={key} id='user-form-label' htmlFor={key}>
-								{props.toTitleCase(key)}
-							</label>
-							<input
-								required
-								id='user-update-input'
-								key={key}
-								type={type}
-								name={key}
-								onChange={handleChange}
-								defaultValue={value}></input>
-						</>
-					);
-				}
-					
+							<>
+								<label key={key} id='user-form-label' htmlFor={key}>
+									{props.toTitleCase(key)}
+								</label>
+								<input
+									required
+									id='user-update-input'
+									key={key}
+									type={type}
+									name={key}
+									onChange={handleChange}
+									defaultValue={value}></input>
+							</>
+						);
+					}
 				});
 				setTransactionInputs(inputs);
 				// setTransactionInputs(<div>Hi</div>);

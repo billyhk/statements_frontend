@@ -28,7 +28,7 @@ const TransactionDetail = (props) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 			body: JSON.stringify({ transaction_list: [transactionId] }),
 		})

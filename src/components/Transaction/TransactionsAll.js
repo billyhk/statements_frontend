@@ -67,7 +67,7 @@ const TransactionsAll = (props) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		})
 			.then((response) => response.json())

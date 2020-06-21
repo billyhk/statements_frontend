@@ -27,7 +27,7 @@ const FinancialStatementSummary = (props) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 			body: JSON.stringify({}),
 		})
@@ -46,7 +46,7 @@ const FinancialStatementSummary = (props) => {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		})
 			.then((res) => res.json())

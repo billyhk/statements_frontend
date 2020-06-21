@@ -18,7 +18,9 @@ const NavBar = ({ userToken, handleSignOut }) => {
 	const [expanded, setExpanded] = useState();
 
 	// useEffect(() => {
-	// 	return (userToken = localStorage.getItem('token'));
+	// 	if (!userToken && !localStorage.getItem('token')) {
+	// 		userToken = null;
+	// 	}
 	// });
 
 	function closeNav() {
@@ -59,7 +61,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 								Home
 							</span>
 						</Link>
-						{userToken ? (
+						{userToken || localStorage.getItem('token') ? (
 							<>
 								<Link to='/user'>
 									<FaUser />{' '}

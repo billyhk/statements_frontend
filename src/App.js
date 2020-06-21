@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 
 //misc. components
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer';
 
 //signin/signup
 import SignIn from './components/Password/SignIn';
@@ -21,17 +21,19 @@ import TransactionDetail from './components/Transaction/TransactionDetail';
 import TransactionUpdate from './components/Transaction/TransactionUpdate';
 
 //financial statements
-import FinancialStatementSummary from './components/Statement/FinancialStatementSummary' 
-
+import FinancialStatementSummary from './components/Statement/FinancialStatementSummary';
 
 const App = () => {
+	let history = useHistory();
+
 	const [token, setToken] = useState('');
 	// let token = localStorage.getItem('token')
 
-
 	async function handleSignOut() {
 		await setToken(null);
-		localStorage.removeItem('token')
+		localStorage.removeItem('token');
+		// return <Redirect to={'/'} />;
+		history.push('/');
 	}
 	function scrollUp() {
 		window.scrollTo(0, 0);
@@ -52,11 +54,14 @@ const App = () => {
 			});
 	}
 
-
-
 	return (
 		<>
-			<NavBar userToken={token} handleSignOut={handleSignOut} />
+			<Route
+				path='*'
+				render={() => {
+					return <NavBar userToken={token} handleSignOut={handleSignOut} />;
+				}}
+			/>
 			<main>
 				<Route exact path='/' component={Home} />
 				<Route exact path='/signup' component={SignUp} />
@@ -161,7 +166,7 @@ const App = () => {
 				/>
 			</main>
 			<footer>
-				<Footer/>
+				<Route path='*' component={Footer} />
 			</footer>
 		</>
 	);

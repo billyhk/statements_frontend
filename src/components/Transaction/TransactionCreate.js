@@ -17,7 +17,7 @@ const NewTransaction = (props) => {
 		fetch(url, {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${props.userToken}`,
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 		})
 			.then((response) => response.json())
