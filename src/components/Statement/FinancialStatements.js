@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { APIURL } from '../../config';
+
+import Modal from '../Modal/Modal';
+import useModal from '../Modal/useModal';
 
 import '../Transaction/Transaction.css';
 import '../User/User.css';
 import './FinancialStatements.css';
+import '../Modal/Modal.css';
 
 const FinancialStatement = (props) => {
 	// function handleOverlay(item) {
 	// 	console.log(item);
 	// 	return <div className='overlay'>{JSON.stringify(item.tr_list)}</div>;
 	// }
-
+	const { isShowing, toggle } = useModal();
 	return (
 		<>
 			{!props.statement ? (
@@ -45,8 +48,7 @@ const FinancialStatement = (props) => {
 														'overlay hidden';
 												}
 											}}>
-											<div
-												className='overlay hidden'>
+											<div className='overlay hidden'>
 												{item.tr_list.map((tr) => {
 													return (
 														<>
@@ -62,6 +64,28 @@ const FinancialStatement = (props) => {
 											{item.currency_format}
 											{item.amount === 0 ? '--' : item.amount}
 										</td>
+
+										{/* <td className={item.amount < 0 ? 'red-text' : 'plain-text'}>
+											<div onClick={toggle}>
+												{item.currency_format}
+												{item.amount === 0 ? '--' : item.amount}
+											</div>
+										</td>
+										<Modal
+											isShowing={isShowing}
+											hide={toggle}
+											tr_list={item.tr_list.map((tr) => {
+												return (
+													<>
+														<p>
+															<Link to={`/user/transaction/${tr.id}`}>
+																{`${tr.id}`}&nbsp;
+															</Link>
+														</p>
+													</>
+												);
+											})}
+										/> */}
 									</tr>
 								);
 							})}

@@ -41,6 +41,7 @@ class SignIn extends Component {
 			.then((res) => {
 				if (res.access) {
 					this.props.setToken(res.access);
+					localStorage.setItem('token', res.access);
 					this.setState({ ...this.state, redirectToReferrer: true });
 				} else {
 					alert('User information is incorrect.');

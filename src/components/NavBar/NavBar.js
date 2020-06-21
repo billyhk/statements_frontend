@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
+import {
+	FaHome,
+	FaLock,
+	FaUser,
+	FaPlus,
+	FaWallet,
+	FaReceipt,
+	FaLockOpen,
+} from 'react-icons/fa';
+
+import '../../index.css';
 
 const NavBar = ({ userToken, handleSignOut }) => {
 	const [expanded, setExpanded] = useState();
 
+	// useEffect(() => {
+	// 	return (userToken = localStorage.getItem('token'));
+	// });
+
 	function closeNav() {
 		if (!expanded) {
-			setExpanded(true)
+			setExpanded(true);
 		} else {
 			setExpanded(false);
 		}
@@ -39,7 +54,7 @@ const NavBar = ({ userToken, handleSignOut }) => {
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='ml-auto' onClick={closeNav}>
 						<Link to='/'>
-							<i className='fa fa-home'></i>
+							<FaHome />{' '}
 							<span className='toggle-hidden-nav' id='toggle-hidden-nav'>
 								Home
 							</span>
@@ -47,29 +62,31 @@ const NavBar = ({ userToken, handleSignOut }) => {
 						{userToken ? (
 							<>
 								<Link to='/user'>
-									<i className='fa fa-user'></i>{' '}
+									<FaUser />{' '}
 									<span className='toggle-hidden-nav'>My Account</span>
 								</Link>
 								<Link to='/user/new-transaction'>
-									<i className='fa fa-plus'></i>{' '}
+									<FaPlus />{' '}
 									<span className='toggle-hidden-nav'>New Transaction</span>
 								</Link>
 								<Link to='/user/all-transactions'>
-									<i className='fa fa-wallet'></i>{' '}
+									<FaWallet />{' '}
 									<span className='toggle-hidden-nav'>All Transactions</span>
 								</Link>
 								<Link to='/user/financial-statements-summary'>
-									<i className='fa fa-receipt'></i>{' '}
-									<span className='toggle-hidden-nav'>Financial Statements</span>
+									<FaReceipt />{' '}
+									<span className='toggle-hidden-nav'>
+										Financial Statements
+									</span>
 								</Link>
 								<Link to='/' onClick={handleSignOut}>
-									<i className='fa fa-lock-open'></i>{' '}
+									<FaLockOpen />{' '}
 									<span className='toggle-hidden-nav'>SignOut</span>
 								</Link>
 							</>
 						) : (
 							<Link to='/signin'>
-								<i className='fa fa-lock'></i>
+								<FaLock />
 								<span className='toggle-hidden-nav'> Sign In</span>
 							</Link>
 						)}

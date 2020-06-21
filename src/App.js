@@ -26,11 +26,12 @@ import FinancialStatementSummary from './components/Statement/FinancialStatement
 
 const App = () => {
 	const [token, setToken] = useState('');
+	// let token = localStorage.getItem('token')
 
-	// const [transactionId, setTransactionId] = useState('');
 
 	async function handleSignOut() {
 		await setToken(null);
+		localStorage.removeItem('token')
 	}
 	function scrollUp() {
 		window.scrollTo(0, 0);
@@ -63,7 +64,7 @@ const App = () => {
 					exact
 					path='/signin'
 					render={(props) => {
-						return <SignIn setToken={setToken} userToken={token} />;
+						return <SignIn setToken={setToken} />;
 					}}
 				/>
 				<Route
