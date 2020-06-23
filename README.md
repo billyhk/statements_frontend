@@ -43,6 +43,6 @@ _**Post MVP Stretch Goals**_
 
 [View API Endpoints](endpoints.md)
 
-## React Component Heierarchy
+## React Component Hierarchy
 
 ![Component Hierarchy](public/readme-images/component-tree-png.png)
