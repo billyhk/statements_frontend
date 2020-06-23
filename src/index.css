@@ -95,8 +95,8 @@ form > * {
 }
 
 .home-title h1 {
-	font-size: 16vmin;
-	font-family: cursive;
+	font-size: 14vmin;
+	/* font-family: cursive; */
 	color: rgba(142, 197, 245, 0.788);
 }
 .home-title h2 {
