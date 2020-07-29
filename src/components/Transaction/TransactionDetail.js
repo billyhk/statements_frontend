@@ -82,7 +82,6 @@ const TransactionDetail = (props) => {
 		);
 	});
 
-	// console.log('details:', details);
 
 	const onDeleteTransaction = (event) => {
 		let confirm = prompt(

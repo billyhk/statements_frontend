@@ -37,17 +37,18 @@ const FinancialStatement = (props) => {
 										</td>
 										<td
 											className={item.amount < 0 ? 'red-text' : 'plain-text'}
-											onMouseEnter={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className = 'overlay';
-												}
-											}}
-											onMouseLeave={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className =
-														'overlay hidden';
-												}
-											}}>
+											// onMouseEnter={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className = 'overlay';
+											// 	}
+											// }}
+											// onMouseLeave={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className =
+											// 			'overlay hidden';
+											// 	}
+											// }}
+											>
 											<div className='overlay hidden'>
 												{item.tr_list.map((tr) => {
 													return (
@@ -106,18 +107,19 @@ const FinancialStatement = (props) => {
 											{props.toTitleCase(item.line_item)}
 										</td>
 										<td
-											className={item.amount < 0 ? 'red-text' : 'plain-text'}
-											onMouseEnter={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className = 'overlay';
-												}
-											}}
-											onMouseLeave={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className =
-														'overlay hidden';
-												}
-											}}>
+											// className={item.amount < 0 ? 'red-text' : 'plain-text'}
+											// onMouseEnter={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className = 'overlay';
+											// 	}
+											// }}
+											// onMouseLeave={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className =
+											// 			'overlay hidden';
+											// 	}
+											// }}
+											>
 											<div className='overlay hidden'>
 												{item.tr_list.map((tr) => {
 													return (
@@ -154,18 +156,19 @@ const FinancialStatement = (props) => {
 											{props.toTitleCase(item.line_item)}
 										</td>
 										<td
-											className={item.amount < 0 ? 'red-text' : 'plain-text'}
-											onMouseEnter={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className = 'overlay';
-												}
-											}}
-											onMouseLeave={(e) => {
-												if (e.target.firstElementChild) {
-													e.target.firstElementChild.className =
-														'overlay hidden';
-												}
-											}}>
+											// className={item.amount < 0 ? 'red-text' : 'plain-text'}
+											// onMouseEnter={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className = 'overlay';
+											// 	}
+											// }}
+											// onMouseLeave={(e) => {
+											// 	if (e.target.firstElementChild) {
+											// 		e.target.firstElementChild.className =
+											// 			'overlay hidden';
+											// 	}
+											// }}
+											>
 											<div className='overlay hidden'>
 												{item.tr_list.map((tr) => {
 													return (
